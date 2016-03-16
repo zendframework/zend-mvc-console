@@ -1,0 +1,55 @@
+{
+    "name": "zendframework/zend-mvc-console",
+    "description": " ",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2",
+        "mvc",
+        "console"
+    ],
+    "homepage": "https://github.com/zendframework/zend-mvc-console",
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "container-interop/container-interop": "^1.1",
+        "zendframework/zend-console": "^2.6",
+        "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
+        "zendframework/zend-modulemanager": "^2.7.1",
+        "zendframework/zend-mvc": "dev-develop as 3.0.0",
+        "zendframework/zend-router": "^2.7.3",
+        "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
+        "zendframework/zend-stdlib": "^2.7.5 || ^3.0",
+        "zendframework/zend-text": "^2.6",
+        "zendframework/zend-view": "^2.6.3"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.3",
+        "phpunit/PHPUnit": "^4.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zend\\Mvc\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ZendTest\\Mvc\\": "test/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev",
+            "dev-develop": "1.1-dev"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "upload-coverage": "coveralls",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf fix -v",
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-clover clover.xml"
+    }
+}
