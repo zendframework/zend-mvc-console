@@ -1,19 +1,17 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
  * @link      http://github.com/zendframework/zend-mvc-console for the canonical source repository
- * @copyright  Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Mvc\Router\Console;
+namespace Zend\Mvc\Console\Router;
 
 use Traversable;
 use Zend\Console\RouteMatcher\DefaultRouteMatcher;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Console\RouteMatcher\RouteMatcherInterface;
-use Zend\Mvc\Router\Exception;
+use Zend\Mvc\Console\Exception;
 use Zend\Stdlib\ArrayUtils;
 use Zend\Stdlib\RequestInterface as Request;
 
@@ -61,7 +59,7 @@ class Simple implements RouteInterface
     /**
      * factory(): defined by Route interface.
      *
-     * @see    \Zend\Mvc\Router\RouteInterface::factory()
+     * @see    \Zend\Router\RouteInterface::factory()
      * @param  array|Traversable $options
      * @throws Exception\InvalidArgumentException
      * @return self
@@ -99,7 +97,7 @@ class Simple implements RouteInterface
     /**
      * match(): defined by Route interface.
      *
-     * @see     \Zend\Mvc\Router\Route::match()
+     * @see     \Zend\Router\Route::match()
      * @param   Request $request
      * @param   null|int $pathOffset
      * @return  RouteMatch
@@ -122,7 +120,7 @@ class Simple implements RouteInterface
     /**
      * assemble(): Defined by Route interface.
      *
-     * @see    \Zend\Mvc\Router\RouteInterface::assemble()
+     * @see    \Zend\Router\RouteInterface::assemble()
      * @param  array $params
      * @param  array $options
      * @return mixed

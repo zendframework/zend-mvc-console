@@ -15,7 +15,7 @@
         "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
         "zendframework/zend-modulemanager": "^2.7.1",
         "zendframework/zend-mvc": "dev-develop as 3.0.0",
-        "zendframework/zend-router": "^2.7.3",
+        "zendframework/zend-router": "^3.0",
         "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
         "zendframework/zend-stdlib": "^2.7.5 || ^3.0",
         "zendframework/zend-text": "^2.6",
@@ -27,18 +27,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Zend\\Mvc\\": "src/"
+            "Zend\\Mvc\\Console\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Mvc\\": "test/"
+            "ZendTest\\Mvc\\Console\\": "test/"
         }
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev",
             "dev-develop": "1.1-dev"
+        },
+        "zf": {
+            "component": "Zend\\Mvc\\Console"
         }
     },
     "scripts": {

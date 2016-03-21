@@ -1,24 +1,19 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
  * @link      http://github.com/zendframework/zend-mvc-console for the canonical source repository
  * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Mvc\Router\Console;
+namespace Zend\Mvc\Console\Router;
 
 use Traversable;
-use Zend\Mvc\Router\Exception;
-use Zend\Mvc\Router\RouteInvokableFactory;
-use Zend\Mvc\Router\SimpleRouteStack as BaseSimpleRouteStack;
+use Zend\Mvc\Console\Exception;
+use Zend\Router\RouteInvokableFactory;
+use Zend\Router\SimpleRouteStack as BaseSimpleRouteStack;
 use Zend\ServiceManager\Config;
 use Zend\Stdlib\ArrayUtils;
 
-/**
- * Tree search implementation.
- */
 class SimpleRouteStack extends BaseSimpleRouteStack
 {
     /**

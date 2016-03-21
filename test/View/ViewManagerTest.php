@@ -1,13 +1,11 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license http://framework.zend.com/license/new-bsd New BSD License
+ * @link      http://github.com/zendframework/zend-mvc-console for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace ZendTest\Mvc\View\Console;
+namespace ZendTest\Mvc\Console\View;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use ReflectionClass;
@@ -18,16 +16,16 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\SharedEventManager;
 use Zend\Mvc\Application;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Service\ConsoleViewManagerFactory;
+use Zend\Mvc\Console\Service\ConsoleViewManagerFactory;
+use Zend\Mvc\Console\View\ViewManager;
 use Zend\Mvc\Service\ServiceListenerFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
-use Zend\Mvc\View\Console\ViewManager;
 use Zend\ServiceManager\ServiceManager;
 
 /**
- * Tests for {@see \Zend\Mvc\View\Console\ViewManager}
+ * Tests for {@see ViewManager}
  *
- * @covers \Zend\Mvc\View\Console\ViewManager
+ * @covers \Zend\Mvc\Console\View\ViewManager
  */
 class ViewManagerTest extends TestCase
 {

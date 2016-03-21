@@ -5,10 +5,8 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace ZendTest\Mvc\Console\Controller\TestAsset;
+namespace Zend\Mvc\Console\Exception;
 
-use Zend\Mvc\Console\Controller\AbstractConsoleController;
-
-class ConsoleController extends AbstractConsoleController
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {
 }

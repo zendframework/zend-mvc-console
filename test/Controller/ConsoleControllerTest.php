@@ -1,13 +1,11 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @link      http://github.com/zendframework/zend-mvc-console for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace ZendTest\Mvc\Controller;
+namespace ZendTest\Mvc\Console\Controller;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Console\Request as ConsoleRequest;
@@ -41,9 +39,9 @@ class ConsoleControllerTest extends TestCase
 
     public function testDispatchIncorrectRequest()
     {
-        $this->setExpectedException('\Zend\Mvc\Exception\InvalidArgumentException');
-
         $request = new Request();
+
+        $this->setExpectedException('\Zend\Mvc\Console\Exception\InvalidArgumentException');
         $this->controller->dispatch($request);
     }
 
@@ -61,7 +59,7 @@ class ConsoleControllerTest extends TestCase
         $controller = $this->controller->setConsole($consoleAdapter);
         $console = $this->controller->getConsole();
 
-        $this->assertInstanceOf('\Zend\Mvc\Controller\AbstractConsoleController', $controller);
+        $this->assertInstanceOf('\Zend\Mvc\Console\Controller\AbstractConsoleController', $controller);
         $this->assertInstanceOf('\Zend\Console\Adapter\AdapterInterface', $console);
     }
 }

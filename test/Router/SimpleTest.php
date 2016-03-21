@@ -1,18 +1,19 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @link      http://github.com/zendframework/zend-mvc-console for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace ZendTest\Mvc\Router\Console;
+namespace ZendTest\Mvc\Console\Router;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Console\Request as ConsoleRequest;
-use Zend\Mvc\Router\Console\Simple;
-use ZendTest\Mvc\Router\FactoryTester;
+use Zend\Console\RouteMatcher\RouteMatcherInterface;
+use Zend\Mvc\Console\Exception\InvalidArgumentException;
+use Zend\Mvc\Console\Router\RouteMatch;
+use Zend\Mvc\Console\Router\Simple;
+use Zend\Router\Http\Segment;
 
 class SimpleTest extends TestCase
 {
@@ -861,7 +862,7 @@ class SimpleTest extends TestCase
         if ($params === null) {
             $this->assertNull($match, "The route must not match");
         } else {
-            $this->assertInstanceOf('Zend\Mvc\Router\Console\RouteMatch', $match, "The route matches");
+            $this->assertInstanceOf(RouteMatch::class, $match, "The route matches");
 
             foreach ($params as $key => $value) {
                 $this->assertEquals(
@@ -922,7 +923,7 @@ class SimpleTest extends TestCase
     {
         $tester = new FactoryTester($this);
         $tester->testFactory(
-            'Zend\Mvc\Router\Http\Segment',
+            Segment::class,
             [
                 'route' => 'Missing "route" in options array'
             ],
@@ -940,7 +941,7 @@ class SimpleTest extends TestCase
         $request = new ConsoleRequest($arguments);
         $route = new Simple('--foo=');
         $match = $route->match($request);
-        $this->assertInstanceOf('Zend\Mvc\Router\Console\RouteMatch', $match, "The route matches");
+        $this->assertInstanceOf(RouteMatch::class, $match, "The route matches");
         $this->assertEquals('bar', $match->getParam('foo'));
     }
 
@@ -950,7 +951,7 @@ class SimpleTest extends TestCase
         array_unshift($arguments, 'scriptname.php');
         $request = new ConsoleRequest($arguments);
 
-        $routeMatcher = $this->getMock('Zend\Console\RouteMatcher\RouteMatcherInterface', ['match']);
+        $routeMatcher = $this->getMock(RouteMatcherInterface::class, ['match']);
         $routeMatcher->expects($this->once())->method('match')
             ->with(['--foo=bar']);
 
@@ -960,8 +961,7 @@ class SimpleTest extends TestCase
 
     public function testConstructorThrowsExceptionWhenFirstArgumentIsNotStringNorRouteMatcherInterface()
     {
-        $this->setExpectedException('Zend\Mvc\Router\Exception\InvalidArgumentException');
-
+        $this->setExpectedException(InvalidArgumentException::class);
         new Simple(new \stdClass());
     }
 }
