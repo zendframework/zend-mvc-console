@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    <title>Version 2 to Version 3 - zend-mvc-console</title>
+
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/zf.css" rel="stylesheet">
+    <link href="../../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="../..">zend-mvc-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../routing/">Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../controllers/">Controllers</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../modules/">Modules</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../listeners/">Listeners</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../services/">Default Services</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Migration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Version 2 to Version 3</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../../services/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-mvc-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#migration-zend-mvc-and-zend-view-v2-to-zend-mvc-console">Migration: zend-mvc and zend-view v2 to zend-mvc-console</a></li>
+        
+            <li><a href="#zend-mvc-functionality">zend-mvc functionality</a></li>
+        
+            <li><a href="#zend-view-functionality">zend-view functionality</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="../..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Migration &raquo;</li>
+      
+    
+  
+  <li class="active">Version 2 to Version 3</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../../services/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next disabled ">
+      <a rel="next" >Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="migration-zend-mvc-and-zend-view-v2-to-zend-mvc-console">Migration: zend-mvc and zend-view v2 to zend-mvc-console</h1>
+<p>zend-mvc-console ports all console functionality from zend-mvc and zend-view v2
+releases to a single component. As such, a number of classes were renamed that
+may impact end-users.</p>
+<h2 id="zend-mvc-functionality">zend-mvc functionality</h2>
+<h3 id="abstractconsolecontroller">AbstractConsoleController</h3>
+<p><code>Zend\Mvc\Controller\AbstractConsoleController</code> becomes
+<code>Zend\Mvc\Console\Controller\AbstractConsoleController</code>. Otherwise, all
+functionality remains the same.</p>
+<p>Update your code to import the <code>AbstractConsoleController</code> under its new
+namespace.</p>
+<h3 id="routing">Routing</h3>
+<p>The namespace <code>Zend\Mvc\Router\Console</code> becomes <code>Zend\Mvc\Console\Router</code>. All
+classes retain existing functionality. If you were using default routes
+(<code>Simple</code>) or using the short names to refer to console routes, no changes will
+be necessary. Otherwise, update your code to refer to the new namespace.</p>
+<h3 id="responsesender">ResponseSender</h3>
+<p><code>Zend\Mvc\ResponseSender\ConsoleResponseSender</code> becomes
+<code>Zend\Mvc\Console\ResponseSender\ConsoleResponseSender</code>. As this is an
+implementation detail, it should have no impact on the end-user.</p>
+<h3 id="listeners">Listeners</h3>
+<p>The <code>Zend\Mvc\View\Console</code> namespace becomes <code>Zend\Mvc\Console\View</code>, but all
+existing listeners retain their names and functionality. As these were all
+managed by the console-specific <code>ViewManager</code>, this change should have no impact
+on the end-user unless:</p>
+<ul>
+<li>any of these classes were being extended</li>
+<li>any custom factories were being used to provide the services (specifically the
+  <code>ConsoleRouteNotFoundStrategy</code>, <code>ConsoleExceptionStrategy</code>, and
+  <code>ConsoleDefaultRenderingStrategy</code>).</li>
+</ul>
+<p>In such cases, you will need to update your code to reference the new namespace.</p>
+<h2 id="zend-view-functionality">zend-view functionality</h2>
+<h3 id="viewmodel">ViewModel</h3>
+<p>zend-view provided a <code>Zend\View\Model\ConsoleModel</code> class. This is now
+<code>Zend\Mvc\Console\View\ViewModel</code>. If you were returning <code>ConsoleModel</code>
+previously, update your code to return the new version.</p>
+<h3 id="renderer">Renderer</h3>
+<p>zend-view provided a <code>Zend\View\Renderer\ConsoleRenderer</code> class. This is now
+<code>Zend\Mvc\Console\View\Renderer</code>. Additionally, the console-specific
+<code>DefaultRenderingStrategy</code> now consumes the renderer (it did not in version 2).</p>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../../services/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next disabled ">
+      <a rel="next" >Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/prism-zf.js"></script>
+
+    <script>var base_url = '../..';</script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>

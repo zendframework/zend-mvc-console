@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>Listeners - zend-mvc-console</title>
+
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/zf.css" rel="stylesheet">
+    <link href="../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a href="http://framework.zend.com"><img src="../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="..">zend-mvc-console</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../routing/">Routing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../controllers/">Controllers</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../modules/">Modules</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Listeners</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../services/">Default Services</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Migration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../migration/v2-to-v3/">Version 2 to Version 3</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="prev" href="../modules/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../services/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-mvc-console">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#mvc-listeners">MVC Listeners</a></li>
+        
+            <li><a href="#mvceventevent_bootstrap-bootstrap">MvcEvent::EVENT_BOOTSTRAP ("bootstrap")</a></li>
+        
+            <li><a href="#mvceventevent_dispatch-dispatch">MvcEvent::EVENT_DISPATCH ("dispatch")</a></li>
+        
+            <li><a href="#mvceventevent_dispatch_error-dispatcherror">MvcEvent::EVENT_DISPATCH_ERROR ("dispatch.error")</a></li>
+        
+            <li><a href="#mvceventevent_render-render">MvcEvent::EVENT_RENDER ("render")</a></li>
+        
+            <li><a href="#mvceventevent_render_error-rendererror">MvcEvent::EVENT_RENDER_ERROR ("render.error")</a></li>
+        
+            <li><a href="#sendresponseeventevent_send_response">SendResponseEvent::EVENT_SEND_RESPONSE</a></li>
+        
+    
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="..">Docs</a> &raquo;</li>
+  
+    
+      
+        <li>Reference &raquo;</li>
+      
+    
+  
+  <li class="active">Listeners</li>
+</ol>
+
+<nav class="hidden-lg">
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../modules/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../services/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="mvc-listeners">MVC Listeners</h1>
+<p>zend-mvc-console registers a number of listeners with zend-mvc applications.
+Below is a list of events, and the listeners zend-mvc-console registers.</p>
+<h2 id="mvceventevent_bootstrap-bootstrap"><code>MvcEvent::EVENT_BOOTSTRAP</code> ("bootstrap")</h2>
+<h3 id="listeners">Listeners</h3>
+<p>The following classes listen to this event (sorted from higher priority to lower
+priority):</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th align="right">Priority</th>
+<th>Method Called</th>
+<th>Triggers</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Console\View\ViewManager</code></td>
+<td align="right">10000</td>
+<td><code>onBootstrap</code></td>
+<td>none</td>
+<td>Prepares the view layer.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="triggered-by">Triggered By</h3>
+<p>This event is triggered by the following classes:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>In Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Application</code></td>
+<td><code>bootstrap</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="mvceventevent_dispatch-dispatch"><code>MvcEvent::EVENT_DISPATCH</code> ("dispatch")</h2>
+<h3 id="listeners_1">Listeners</h3>
+<p>The following classes listen to this event (sorted from higher priority to lower
+priority):</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th align="right">Priority</th>
+<th>Method Called</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Console\View\InjectNamedConsoleParamsListener</code></td>
+<td align="right">1000</td>
+<td><code>injectNamedParams</code></td>
+<td>Merge all params (route match params and params in the command), and add them to the <code>Request</code> object.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\CreateViewModelListener</code></td>
+<td align="right">-80</td>
+<td><code>createViewModelFromArray</code></td>
+<td>If the controller action returns an associative array, this listener casts it to a <code>Zend\Mvc\Console\View\ViewModel</code> object.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\CreateViewModelListener</code></td>
+<td align="right">-80</td>
+<td><code>createViewModelFromString</code></td>
+<td>If the controller action returns a string, this listener casts it to a <code>Zend\Mvc\Console\View\ViewModel</code> object.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\CreateViewModelListener</code></td>
+<td align="right">-80</td>
+<td><code>createViewModelFromNull</code></td>
+<td>If the controller action returns null, this listener casts it to a <code>Zend\Mvc\Console\View\ViewModel</code> object.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\InjectViewModelListener</code></td>
+<td align="right">-100</td>
+<td><code>injectViewModel</code></td>
+<td>Inserts the <code>ViewModel</code> (in this case, a <code>Zend\Mvc\Console\View\ViewModel</code>) and adds it to the <code>MvcEvent</code> object. It either (a) adds it as a child to the default, composed view model, or (b) replaces it if the result is marked as terminal.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="triggered-by_1">Triggered By</h3>
+<p>This event is triggered by the following classes:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>In Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Application</code></td>
+<td><code>run</code></td>
+<td>Uses a short circuit callback to halt propagation of the event if an error is raised during routing.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Controller\AbstractController</code></td>
+<td><code>dispatch</code></td>
+<td>If a listener returns a <code>Response</code> object, it halts propagation. Note: every <code>AbstractController</code> listens to this event and executes the <code>onDispatch</code> method when it is triggered.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="mvceventevent_dispatch_error-dispatcherror"><code>MvcEvent::EVENT_DISPATCH_ERROR</code> ("dispatch.error")</h2>
+<h3 id="listeners_2">Listeners</h3>
+<p>The following classes listen to this event (sorted from higher priority to lower
+priority):</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th align="right">Priority</th>
+<th>Method Called</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Console\View\RouteNotFoundStrategy</code></td>
+<td align="right">1</td>
+<td><code>handleRouteNotFoundError</code></td>
+<td>Detect if an error is a "route not found" condition, and display a usage message.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\ExceptionStrategy</code></td>
+<td align="right">1</td>
+<td><code>prepareExceptionViewModel</code></td>
+<td>Create an exception view model.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\InjectViewModelListener</code></td>
+<td align="right">-100</td>
+<td><code>injectViewModel</code></td>
+<td>Inserts the <code>ViewModel</code> (in this case, a <code>Zend\Mvc\Console\View\ViewModel</code>) and adds it to the <code>MvcEvent</code> object. It either (a) adds it as a child to the default, composed view model, or (b) replaces it if the result is marked as terminable.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="triggered-by_2">Triggered By</h3>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>In Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\MiddlewareListener</code></td>
+<td><code>onDispatch</code></td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\DispatchListener</code></td>
+<td><code>onDispatch</code></td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\DispatchListener</code></td>
+<td><code>marshallControllerNotFoundEvent</code></td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\DispatchListener</code></td>
+<td><code>marshallBadControllerEvent</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="mvceventevent_render-render"><code>MvcEvent::EVENT_RENDER</code> ("render")</h2>
+<h3 id="listeners_3">Listeners</h3>
+<p>The following classes listen to this event (sorted from higher priority to lower
+priority):</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th align="right">Priority</th>
+<th>Method Called</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Console\View\DefaultRenderingStrategy</code></td>
+<td align="right">-10000</td>
+<td><code>render</code></td>
+<td>Render the view.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="triggered-by_3">Triggered By</h3>
+<p>This event is triggered by the following classes:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>In Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Application</code></td>
+<td><code>completeRequest</code></td>
+<td>This event is triggered just before the <code>MvcEvent::FINISH</code> event.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="mvceventevent_render_error-rendererror"><code>MvcEvent::EVENT_RENDER_ERROR</code> ("render.error")</h2>
+<h3 id="listeners_4">Listeners</h3>
+<p>The following classes listen to this event (sorted from higher priority to lower
+priority):</p>
+<h4 id="console-context-only">Console context only</h4>
+<p>The following listeners are only attached in a console context:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th align="right">Priority</th>
+<th>Method Called</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Console\View\ExceptionStrategy</code></td>
+<td align="right">1</td>
+<td><code>prepareExceptionViewModel</code></td>
+<td>Create an exception view model.</td>
+</tr>
+<tr>
+<td><code>Zend\Mvc\Console\View\InjectViewModelListener</code></td>
+<td align="right">-100</td>
+<td><code>injectViewModel</code></td>
+<td>Inserts the <code>ViewModel</code> (in this case, a <code>Zend\Mvc\Console\View\ViewModel</code>) and adds it to the <code>MvcEvent</code> object. It either (a) adds it as a child to the default, composed view model, or (b) replaces it if the result is marked as terminable.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="triggered-by_4">Triggered By</h3>
+<p>This event is triggered by the following classes:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>In Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\View\Http\DefaultRenderingStrategy</code></td>
+<td><code>render</code></td>
+<td>This event is triggered if an exception is raised during rendering.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="sendresponseeventevent_send_response"><code>SendResponseEvent::EVENT_SEND_RESPONSE</code></h2>
+<h3 id="listeners_5">Listeners</h3>
+<p>The following classes listen to this event (sorted from higher priority to lower
+priority):</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Priority</th>
+<th>Method Called</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\Console\ResponseSender\ConsoleResponseSender</code></td>
+<td>-2000</td>
+<td><code>__invoke</code></td>
+<td>Emits console output.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="triggered-by_5">Triggered By</h3>
+<p>This event is triggered by the following classes:</p>
+<div class="table-responsive"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>In Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Zend\Mvc\SendResponseListener</code></td>
+<td><code>sendResponse</code></td>
+<td>Triggered by <code>MvcEvent::FINISH</code> at a priority of -10000, this listener emits the response to the client.</td>
+</tr>
+</tbody>
+</table></div>
+
+<hr />
+
+<nav>
+  <ul class="pager">
+    <li class="previous">
+      <a rel="prev" href="../modules/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next">
+      <a rel="next" href="../services/">Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav></div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/prism-zf.js"></script>
+
+    <script>var base_url = '..';</script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
