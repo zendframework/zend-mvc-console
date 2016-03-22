@@ -12,7 +12,7 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Console\View\CreateViewModelListener;
-use Zend\View\Model\ConsoleModel;
+use Zend\Mvc\Console\View\ViewModel as ConsoleModel;
 
 class CreateViewModelListenerTest extends TestCase
 {

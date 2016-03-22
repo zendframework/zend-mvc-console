@@ -13,6 +13,7 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\Application;
 use Zend\Mvc\Console\View\ExceptionStrategy;
+use Zend\Mvc\Console\View\ViewModel;
 use Zend\Mvc\MvcEvent;
 
 class ExceptionStrategyTest extends TestCase
@@ -191,7 +192,7 @@ class ExceptionStrategyTest extends TestCase
 
             $this->strategy->prepareExceptionViewModel($event);
 
-            $this->assertInstanceOf('Zend\View\Model\ConsoleModel', $event->getResult());
+            $this->assertInstanceOf(ViewModel::class, $event->getResult());
             $this->assertNotEquals(
                 'something',
                 $event->getResult()->getResult(),

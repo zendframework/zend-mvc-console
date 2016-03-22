@@ -10,9 +10,9 @@ namespace Zend\Mvc\Console\View;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\Application;
+use Zend\Mvc\Console\View\ViewModel as ConsoleModel;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
-use Zend\View\Model\ConsoleModel;
 
 class ExceptionStrategy extends AbstractListenerAggregate
 {

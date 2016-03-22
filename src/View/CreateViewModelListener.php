@@ -9,9 +9,9 @@ namespace Zend\Mvc\Console\View;
 
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface as Events;
+use Zend\Mvc\Console\View\ViewModel as ConsoleModel;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ArrayUtils;
-use Zend\View\Model\ConsoleModel;
 
 class CreateViewModelListener extends AbstractListenerAggregate
 {

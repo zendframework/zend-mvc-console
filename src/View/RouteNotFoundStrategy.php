@@ -18,12 +18,12 @@ use Zend\ModuleManager\Feature\ConsoleBannerProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\Mvc\Application;
 use Zend\Mvc\Console\Exception\RuntimeException;
+use Zend\Mvc\Console\View\ViewModel as ConsoleModel;
 use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\Stdlib\StringUtils;
 use Zend\Text\Table;
-use Zend\View\Model\ConsoleModel;
 
 class RouteNotFoundStrategy extends AbstractListenerAggregate
 {
