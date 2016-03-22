@@ -39,6 +39,11 @@ class ViewManager implements ListenerAggregateInterface
     protected $services;
 
     /**
+     * @var View
+     */
+    protected $view;
+
+    /**
      * Attach bootstrap event.
      *
      * {@inheritDoc}
@@ -66,7 +71,6 @@ class ViewManager implements ListenerAggregateInterface
         $sharedEvents   = $events->getSharedManager();
         $this->config   = $this->loadConfig($services->get('config'));
         $this->services = $services;
-        $this->event    = $event;
 
         $routeNotFoundStrategy   = $services->get('ConsoleRouteNotFoundStrategy');
         $exceptionStrategy       = $services->get('ConsoleExceptionStrategy');

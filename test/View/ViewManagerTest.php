@@ -7,20 +7,36 @@
 
 namespace ZendTest\Mvc\Console\View;
 
+use Interop\Container\ContainerInterface;
+use PHPUnit_Framework_Assert;
 use PHPUnit_Framework_TestCase as TestCase;
+use Prophecy\Argument;
 use ReflectionClass;
 use ReflectionProperty;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Console\Response as ConsoleResponse;
 use Zend\EventManager\EventManager;
+use Zend\EventManager\EventManagerInterface;
+use Zend\EventManager\EventsCapableInterface;
+use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\SharedEventManager;
+use Zend\EventManager\SharedEventManagerInterface;
+use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\Application;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Console\Service\ConsoleViewManagerFactory;
+use Zend\Mvc\Console\View\DefaultRenderingStrategy;
+use Zend\Mvc\Console\View\ExceptionStrategy;
+use Zend\Mvc\Console\View\CreateViewModelListener;
+use Zend\Mvc\Console\View\InjectNamedConsoleParamsListener;
+use Zend\Mvc\Console\View\InjectViewModelListener;
+use Zend\Mvc\Console\View\RouteNotFoundStrategy;
 use Zend\Mvc\Console\View\ViewManager;
 use Zend\Mvc\Service\ServiceListenerFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
+use Zend\Stdlib\DispatchableInterface;
+use Zend\View\View;
 
 /**
  * Tests for {@see ViewManager}
@@ -29,6 +45,8 @@ use Zend\ServiceManager\ServiceManager;
  */
 class ViewManagerTest extends TestCase
 {
+    use EventListenerIntrospectionTrait;
+
     /**
      * @var ServiceManager
      */
@@ -49,6 +67,85 @@ class ViewManagerTest extends TestCase
         $this->services = new ServiceManager();
         $this->prepareServiceManagerConfig()->configureServiceManager($this->services);
         $this->factory  = new ConsoleViewManagerFactory();
+    }
+
+    public function setupBaseListenerExpectations($events, $shared, $container)
+    {
+        $routeNotFoundStrategy = $this->prophesize(RouteNotFoundStrategy::class);
+        $routeNotFoundStrategy->attach($events->reveal())->shouldBeCalled();
+        $container->get('ConsoleRouteNotFoundStrategy')->willReturn($routeNotFoundStrategy->reveal());
+
+        $exceptionStrategy = $this->prophesize(ExceptionStrategy::class);
+        $exceptionStrategy->attach($events->reveal())->shouldBeCalled();
+        $container->get('ConsoleExceptionStrategy')->willReturn($exceptionStrategy->reveal());
+
+        $defaultRenderingStrategy = $this->prophesize(DefaultRenderingStrategy::class);
+        $defaultRenderingStrategy->attach($events->reveal())->shouldBeCalled();
+        $container->get('ConsoleDefaultRenderingStrategy')->willReturn($defaultRenderingStrategy->reveal());
+
+        $verifyCallable = function ($type, $method) {
+            return function ($argument) use ($type, $method) {
+                if (! is_array($argument)) {
+                    return false;
+                }
+                if (! $argument[0] instanceof $type) {
+                    return false;
+                }
+                if (! $argument[1] == $method) {
+                    return false;
+                }
+                return true;
+            };
+        };
+
+        $verifyInjectViewModelListener = $verifyCallable(InjectViewModelListener::class, 'injectViewModel');
+
+        $events->attach(
+            MvcEvent::EVENT_DISPATCH_ERROR,
+            Argument::that($verifyInjectViewModelListener),
+            -100
+        )->shouldBeCalled();
+
+        $events->attach(
+            MvcEvent::EVENT_RENDER_ERROR,
+            Argument::that($verifyInjectViewModelListener),
+            -100
+        )->shouldBeCalled();
+
+        $shared->attach(
+            DispatchableInterface::class,
+            MvcEvent::EVENT_DISPATCH,
+            Argument::that($verifyCallable(InjectNamedConsoleParamsListener::class, 'injectNamedParams')),
+            1000
+        )->shouldBeCalled();
+
+        $shared->attach(
+            DispatchableInterface::class,
+            MvcEvent::EVENT_DISPATCH,
+            Argument::that($verifyCallable(CreateViewModelListener::class, 'createViewModelFromArray')),
+            -80
+        )->shouldBeCalled();
+
+        $shared->attach(
+            DispatchableInterface::class,
+            MvcEvent::EVENT_DISPATCH,
+            Argument::that($verifyCallable(CreateViewModelListener::class, 'createViewModelFromString')),
+            -80
+        )->shouldBeCalled();
+
+        $shared->attach(
+            DispatchableInterface::class,
+            MvcEvent::EVENT_DISPATCH,
+            Argument::that($verifyCallable(CreateViewModelListener::class, 'createViewModelFromNull')),
+            -80
+        )->shouldBeCalled();
+
+        $shared->attach(
+            DispatchableInterface::class,
+            MvcEvent::EVENT_DISPATCH,
+            Argument::that($verifyCallable(InjectViewModelListener::class, 'injectViewModel')),
+            -100
+        )->shouldBeCalled();
     }
 
     /**
@@ -190,5 +287,151 @@ class ViewManagerTest extends TestCase
         $routeNotFoundStrategy = $this->services->get('ConsoleRouteNotFoundStrategy');
         $this->assertInstanceOf('Zend\Mvc\View\Console\RouteNotFoundStrategy', $routeNotFoundStrategy);
         $this->assertTrue($routeNotFoundStrategy->displayNotFoundReason());
+    }
+
+    public function testAttachesOnBootstrapListenerAtExpectedPriority()
+    {
+        $events = $this->createEventManager();
+        $manager = new ViewManager();
+        $manager->attach($events);
+
+        $this->assertListenerAtPriority(
+            [$manager, 'onBootstrap'],
+            10000,
+            MvcEvent::EVENT_BOOTSTRAP,
+            $events
+        );
+    }
+
+    public function testOnBootstrapAttachesExpectedListeners()
+    {
+        // Basic setup
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get('config')->willReturn([]);
+
+        $shared = $this->prophesize(SharedEventManagerInterface::class);
+        $events = $this->prophesize(EventManagerInterface::class);
+        $events->getSharedManager()->willReturn($shared->reveal());
+
+        $application = $this->prophesize(Application::class);
+        $application->getServiceManager()->willReturn($container->reveal());
+        $application->getEventManager()->willReturn($events->reveal());
+
+        $event = $this->prophesize(MvcEvent::class);
+        $event->getApplication()->willReturn($application->reveal());
+
+        $this->setupBaseListenerExpectations($events, $shared, $container);
+
+        // Perform test
+        $manager = new ViewManager();
+        $this->assertNull($manager->onBootstrap($event->reveal()));
+    }
+
+    public function mvcStrategyConfiguration()
+    {
+        $baseConfig = [
+            'view_manager' => [
+                'mvc_strategies' => [],
+            ],
+        ];
+        $baseStringConfig = $baseArrayConfig = $baseConfig;
+        $baseStringConfig['view_manager']['mvc_strategies']  = 'CustomStrategy';
+        $baseArrayConfig['view_manager']['mvc_strategies'][] = 'CustomStrategy';
+
+        return [
+            'console-string' => [['console' => $baseStringConfig], 'CustomStrategy'],
+            'console-array'  => [['console' => $baseArrayConfig], 'CustomStrategy'],
+            'default-string' => [$baseStringConfig, 'CustomStrategy'],
+            'default-array'  => [$baseArrayConfig, 'CustomStrategy'],
+        ];
+    }
+
+    /**
+     * @dataProvider mvcStrategyConfiguration
+     */
+    public function testWillInjectAdditionalMvcStrategiesFromConfiguration($config, $listenerName)
+    {
+        // Basic setup
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get('config')->willReturn($config);
+
+        $shared = $this->prophesize(SharedEventManagerInterface::class);
+        $events = $this->prophesize(EventManagerInterface::class);
+        $events->getSharedManager()->willReturn($shared->reveal());
+
+        $application = $this->prophesize(Application::class);
+        $application->getServiceManager()->willReturn($container->reveal());
+        $application->getEventManager()->willReturn($events->reveal());
+
+        $event = $this->prophesize(MvcEvent::class);
+        $event->getApplication()->willReturn($application->reveal());
+
+        $this->setupBaseListenerExpectations($events, $shared, $container);
+
+        // Setup listener to attach
+        $listener = $this->prophesize(ListenerAggregateInterface::class);
+        $listener->attach($events->reveal(), 100)->shouldBeCalled();
+        $container->get($listenerName)->willReturn($listener->reveal());
+
+        // Perform test
+        $manager = new ViewManager();
+        $this->assertNull($manager->onBootstrap($event->reveal()));
+    }
+
+    public function viewStrategyConfiguration()
+    {
+        $baseConfig = [
+            'view_manager' => [
+                'strategies' => [],
+            ],
+        ];
+        $baseStringConfig = $baseArrayConfig = $baseConfig;
+        $baseStringConfig['view_manager']['strategies']  = 'CustomStrategy';
+        $baseArrayConfig['view_manager']['strategies'][] = 'CustomStrategy';
+
+        return [
+            'console-string' => [['console' => $baseStringConfig], 'CustomStrategy'],
+            'console-array'  => [['console' => $baseArrayConfig], 'CustomStrategy'],
+            'default-string' => [$baseStringConfig, 'CustomStrategy'],
+            'default-array'  => [$baseArrayConfig, 'CustomStrategy'],
+        ];
+    }
+
+    /**
+     * @dataProvider viewStrategyConfiguration
+     */
+    public function testWillRegisterViewStrategiesFromConfiguration($config, $strategyName)
+    {
+        // Basic setup
+        $container = $this->prophesize(ContainerInterface::class);
+        $container->get('config')->willReturn($config);
+
+        $shared = $this->prophesize(SharedEventManagerInterface::class);
+        $events = $this->prophesize(EventManagerInterface::class);
+        $events->getSharedManager()->willReturn($shared->reveal());
+
+        $application = $this->prophesize(Application::class);
+        $application->getServiceManager()->willReturn($container->reveal());
+        $application->getEventManager()->willReturn($events->reveal());
+
+        $event = $this->prophesize(MvcEvent::class);
+        $event->getApplication()->willReturn($application->reveal());
+
+        $this->setupBaseListenerExpectations($events, $shared, $container);
+
+        // Setup view
+        $viewEvents = $this->prophesize(EventManagerInterface::class);
+        $view = $this->prophesize(View::class);
+        $view->getEventManager()->willReturn($viewEvents->reveal());
+        $container->get(View::class)->willReturn($view->reveal());
+
+        // Setup listener to attach
+        $listener = $this->prophesize(ListenerAggregateInterface::class);
+        $listener->attach($viewEvents->reveal(), 100)->shouldBeCalled();
+        $container->get($strategyName)->willReturn($listener->reveal());
+
+        // Perform test
+        $manager = new ViewManager();
+        $this->assertNull($manager->onBootstrap($event->reveal()));
     }
 }
