@@ -35,7 +35,6 @@ class ConsoleApplicationDelegatorFactory implements DelegatorFactoryInterface
             return $application;
         }
 
-        $events = $application->getEventManager();
         $container->get('ConsoleViewManager')->attach($application->getEventManager());
         return $application;
     }
