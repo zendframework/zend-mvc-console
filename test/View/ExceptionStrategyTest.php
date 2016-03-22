@@ -96,9 +96,17 @@ class ExceptionStrategyTest extends TestCase
     public function testPreviousMessageTokens($token, $found)
     {
         if ($found) {
-            $this->assertContains($token, $this->strategy->getMessage(), sprintf('%s token not in previousMessage', $token));
+            $this->assertContains(
+                $token,
+                $this->strategy->getMessage(),
+                sprintf('%s token not in previousMessage', $token)
+            );
         } else {
-            $this->assertNotContains($token, $this->strategy->getMessage(), sprintf('%s token in previousMessage', $token));
+            $this->assertNotContains(
+                $token,
+                $this->strategy->getMessage(),
+                sprintf('%s token in previousMessage', $token)
+            );
         }
     }
 
@@ -121,7 +129,11 @@ class ExceptionStrategyTest extends TestCase
         $event = new MvcEvent(MvcEvent::EVENT_DISPATCH_ERROR);
 
         $event->setResult('something');
-        $this->assertEquals('something', $event->getResult(), 'When no error has been set on the event getResult should not be modified');
+        $this->assertEquals(
+            'something',
+            $event->getResult(),
+            'When no error has been set on the event getResult should not be modified'
+        );
     }
 
     public function testPrepareExceptionViewModelResponseObjectInResultGetsSameResult()
@@ -130,12 +142,20 @@ class ExceptionStrategyTest extends TestCase
 
         $result = new Response();
         $event->setResult($result);
-        $this->assertEquals($result, $event->getResult(), 'When a response object has been set on the event getResult should not be modified');
+        $this->assertEquals(
+            $result,
+            $event->getResult(),
+            'When a response object has been set on the event getResult should not be modified'
+        );
     }
 
     public function testPrepareExceptionViewModelErrorsThatMustGetSameResult()
     {
-        $errors = [Application::ERROR_CONTROLLER_NOT_FOUND, Application::ERROR_CONTROLLER_INVALID, Application::ERROR_ROUTER_NO_MATCH];
+        $errors = [
+            Application::ERROR_CONTROLLER_NOT_FOUND,
+            Application::ERROR_CONTROLLER_INVALID,
+            Application::ERROR_ROUTER_NO_MATCH
+        ];
         foreach ($errors as $error) {
             $events = new EventManager();
             $this->strategy->attach($events);
@@ -148,7 +168,11 @@ class ExceptionStrategyTest extends TestCase
 
             $events->triggerEvent($event);
 
-            $this->assertEquals('something', $event->getResult(), sprintf('With an error of %s getResult should not be modified', $error));
+            $this->assertEquals(
+                'something',
+                $event->getResult(),
+                sprintf('With an error of %s getResult should not be modified', $error)
+            );
         }
     }
 
@@ -168,8 +192,16 @@ class ExceptionStrategyTest extends TestCase
             $this->strategy->prepareExceptionViewModel($event);
 
             $this->assertInstanceOf('Zend\View\Model\ConsoleModel', $event->getResult());
-            $this->assertNotEquals('something', $event->getResult()->getResult(), sprintf('With an error of %s getResult should have been modified', $error));
-            $this->assertContains('message foo', $event->getResult()->getResult(), sprintf('With an error of %s getResult should have been modified', $error));
+            $this->assertNotEquals(
+                'something',
+                $event->getResult()->getResult(),
+                sprintf('With an error of %s getResult should have been modified', $error)
+            );
+            $this->assertContains(
+                'message foo',
+                $event->getResult()->getResult(),
+                sprintf('With an error of %s getResult should have been modified', $error)
+            );
         }
     }
 

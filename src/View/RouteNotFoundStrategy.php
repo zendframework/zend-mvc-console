@@ -458,7 +458,11 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
         $report = sprintf("\nReason for failure: %s\n", $reasons[$reason]);
 
         while ($exception instanceof \Exception) {
-            $report   .= sprintf("Exception: %s\nTrace:\n%s\n", $exception->getMessage(), $exception->getTraceAsString());
+            $report .= sprintf(
+                "Exception: %s\nTrace:\n%s\n",
+                $exception->getMessage(),
+                $exception->getTraceAsString()
+            );
             $exception = $exception->getPrevious();
         }
         return $report;
