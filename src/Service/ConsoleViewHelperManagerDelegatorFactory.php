@@ -12,6 +12,7 @@ use Zend\Console\Console;
 use Zend\ServiceManager\DelegatorFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper as ViewHelper;
+use Zend\View\HelperPluginManager;
 
 /**
  * Delegator factory for the zend-view helper manager.
@@ -26,7 +27,7 @@ class ConsoleViewHelperManagerDelegatorFactory implements DelegatorFactoryInterf
      * @param string $name
      * @param callable $callback
      * @param null|array $options
-     * @return \Zend\View\HelperPluginManager
+     * @return HelperPluginManager
      */
     public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
     {
@@ -48,7 +49,7 @@ class ConsoleViewHelperManagerDelegatorFactory implements DelegatorFactoryInterf
      * @param string $name
      * @param string $requestedName
      * @param callable $callback
-     * @return \Zend\View\HelperPluginManager
+     * @return HelperPluginManager
      */
     public function createDelegatorWithName(ServiceLocatorInterface $container, $name, $requestedName, $callback)
     {
