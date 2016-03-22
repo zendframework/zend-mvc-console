@@ -22,18 +22,4 @@ class Module
             'console' => ['router' => ['routes' => []]],
         ];
     }
-
-    /**
-     * Attaches the InjectRouteMatchParamsListener to the application event manager.
-     *
-     * @param \Zend\Mvc\MvcEvent $event
-     * @return void
-     */
-    public function onBootstrap($event)
-    {
-        $application = $event->getApplication();
-        $events = $application->getEventManager();
-
-        (new View\InjectRouteMatchParamsListener())->attach($events);
-    }
 }
