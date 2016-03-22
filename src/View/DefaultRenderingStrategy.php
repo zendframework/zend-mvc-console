@@ -10,13 +10,26 @@ namespace Zend\Mvc\Console\View;
 use Zend\Console\Response as ConsoleResponse;
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
+use Zend\Mvc\Console\View\ViewModel as ConsoleViewModel;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
-use Zend\View\Model\ConsoleModel as ConsoleViewModel;
 use Zend\View\Model\ModelInterface;
 
 class DefaultRenderingStrategy extends AbstractListenerAggregate
 {
+    /**
+     * @var Renderer
+     */
+    private $renderer;
+
+    /**
+     * @param Renderer $renderer
+     */
+    public function __construct(Renderer $renderer)
+    {
+        $this->renderer = $renderer;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -38,31 +51,11 @@ class DefaultRenderingStrategy extends AbstractListenerAggregate
             return $result; // the result is already rendered ...
         }
 
-        // marshal arguments
+        // Marshal arguments
         $response  = $e->getResponse();
 
-        if (! $result instanceof ModelInterface) {
-            // There is absolutely no result, so there's nothing to display.
-            // We will return an empty response object
-            return $response;
-        }
-
-        // Collect results from child models
-        $responseText = '';
-        if ($result->hasChildren()) {
-            foreach ($result->getChildren() as $child) {
-                // Do not use ::getResult() method here as we cannot be sure if
-                // children are also console models.
-                $responseText .= $child->getVariable(ConsoleViewModel::RESULT);
-            }
-        }
-
-        // Fetch result from primary model
-        if ($result instanceof ConsoleViewModel) {
-            $responseText .= $result->getResult();
-        } else {
-            $responseText .= $result->getVariable(ConsoleViewModel::RESULT);
-        }
+        // Render the result
+        $responseText = $this->renderer->render($result);
 
         // Fetch service manager
         $sm = $e->getApplication()->getServiceManager();

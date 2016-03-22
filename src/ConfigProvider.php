@@ -34,6 +34,7 @@ class ConfigProvider
         return [
             'aliases' => [
                 'ConsoleDefaultRenderingStrategy' => View\DefaultRenderingStrategy::class,
+                'ConsoleRenderer'                 => View\Renderer::class,
             ],
             'delegator_factories' => [
                 'Application'               => [ Service\ConsoleApplicationDelegatorFactory::class ],
@@ -49,7 +50,8 @@ class ConfigProvider
                 'ConsoleRouteNotFoundStrategy' => Service\ConsoleRouteNotFoundStrategyFactory::class,
                 'ConsoleRouter'                => Router\ConsoleRouterFactory::class,
                 'ConsoleViewManager'           => Service\ConsoleViewManagerFactory::class,
-                View\DefaultRenderingStrategy::class => InvokableFactory::class,
+                View\DefaultRenderingStrategy::class => Service\DefaultRenderingStrategyFactory::class,
+                View\Renderer::class           => InvokableFactory::class,
             ],
         ];
     }

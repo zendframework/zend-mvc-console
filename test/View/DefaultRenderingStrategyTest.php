@@ -13,6 +13,7 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\ApplicationInterface;
 use Zend\Mvc\Console\View\DefaultRenderingStrategy;
+use Zend\Mvc\Console\View\Renderer;
 use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\Response;
@@ -22,12 +23,20 @@ class DefaultRenderingStrategyTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
 
-    /** @var DefaultRenderingStrategy */
+    /**
+     * @var Renderer
+     */
+    protected $renderer;
+
+    /**
+     * @var DefaultRenderingStrategy
+     */
     protected $strategy;
 
     public function setUp()
     {
-        $this->strategy = new DefaultRenderingStrategy();
+        $this->renderer = $this->prophesize(Renderer::class);
+        $this->strategy = new DefaultRenderingStrategy($this->renderer->reveal());
     }
 
     public function testAttachesRendererAtExpectedPriority()
@@ -79,6 +88,9 @@ class DefaultRenderingStrategyTest extends TestCase
         $event->setApplication($mockApplication);
 
         $model    = new Model\ViewModel(['content' => 'Page not found']);
+
+        $this->renderer->render($model)->willReturn('');
+
         $response = new Response();
         $event->setResult($model);
         $event->setResponse($response);
@@ -110,6 +122,9 @@ class DefaultRenderingStrategyTest extends TestCase
         $event->setApplication($mockApplication);
 
         $model    = true;
+
+        $this->renderer->render($model)->willReturn('');
+
         $response = new Response();
         $event->setResult($model);
         $event->setResponse($response);

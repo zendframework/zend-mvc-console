@@ -17,36 +17,30 @@ use Zend\View\Resolver\ResolverInterface;
 
 /**
  * Render console view models.
- *
- * Note: all non-public variables in this class are prefixed with "__". This is
- * to mark them as part of the internal implementation, and thus prevent
- * conflict with variables injected into the renderer.
  */
 class Renderer implements RendererInterface, TreeRendererInterface
 {
     /**
      * @var FilterChain
      */
-    protected $__filterChain;
+    protected $filterChain;
 
     /**
      * Constructor.
      *
-     * @todo handle passing helper manager, options
-     * @todo handle passing filter chain, options
-     * @todo handle passing variables object, options
-     * @todo handle passing resolver object, options
      * @param array $config Configuration key-value pairs.
      */
-    public function __construct($config = [])
+    public function __construct(FilterChain $filterChain = null)
     {
-        $this->init();
+        if ($filterChain) {
+            $this->setFilterChain($filterChain);
+        }
     }
 
     /**
      * Set the script resolver.
      *
-     * No-op.
+     * No-op. Required by RendererInterface.
      *
      * @param ResolverInterface $resolver
      * @return void
@@ -68,24 +62,13 @@ class Renderer implements RendererInterface, TreeRendererInterface
     }
 
     /**
-     * Allow custom object initialization when extending the Renderer.
-     *
-     * Triggered by {@link __construct() the constructor} as its final action.
-     *
-     * @return void
-     */
-    public function init()
-    {
-    }
-
-    /**
      * Set filter chain     o use for post-filtering script content.
      *
      * @param FilterChain $filters
      */
     public function setFilterChain(FilterChain $filters)
     {
-        $this->__filterChain = $filters;
+        $this->filterChain = $filters;
     }
 
     /**
@@ -95,7 +78,7 @@ class Renderer implements RendererInterface, TreeRendererInterface
      */
     public function getFilterChain()
     {
-        return $this->__filterChain;
+        return $this->filterChain;
     }
 
     /**
@@ -108,36 +91,40 @@ class Renderer implements RendererInterface, TreeRendererInterface
      */
     public function render($model, $values = null)
     {
+        $result = '';
+
         if (! $model instanceof ModelInterface) {
-            return '';
+            // View model is required by this renderer
+            return $result;
         }
 
-        $result = '';
+        // If option keys match setters, pass values to those methods.
         foreach ($model->getOptions() as $setting => $value) {
             $method = 'set' . $setting;
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
-            unset($method, $setting, $value);
         }
 
-        $values = $model->getVariables();
-
-        if (isset($values['result']) && ! isset($this->__filterChain)) {
-            // append the result verbatim
-            $result .= $values['result'];
-        }
-
-        if (isset($values['result']) && isset($this->__filterChain)) {
-            // filter and append the result
-            $result .= $this->getFilterChain()->filter($values['result']);
-        }
-
+        // Render children first
         if ($model->hasChildren()) {
             // recursively render all children
             foreach ($model->getChildren() as $child) {
                 $result .= $this->render($child, $values);
             }
+        }
+
+        // Render the result, if present.
+        $values = $model->getVariables();
+
+        if (isset($values['result']) && ! isset($this->filterChain)) {
+            // append the result verbatim
+            $result .= $values['result'];
+        }
+
+        if (isset($values['result']) && isset($this->filterChain)) {
+            // filter and append the result
+            $result .= $this->getFilterChain()->filter($values['result']);
         }
 
         return $result;

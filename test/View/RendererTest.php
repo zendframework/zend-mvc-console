@@ -108,14 +108,21 @@ class RendererTest extends TestCase
         $this->assertSame('FILTERED', $this->renderer->render($model->reveal()));
     }
 
-    public function testRendersChildrenByAppendingThemToResult()
+    public function testAppendsChildrenToEachOtherAndThenAppendsParentResult()
     {
-        $child = $this->prophesize(ModelInterface::class);
-        $child->getOptions()->willReturn([]);
-        $child->getVariables()->willReturn([
-            'result' => 'CHILD',
+        $child1 = $this->prophesize(ModelInterface::class);
+        $child1->getOptions()->willReturn([]);
+        $child1->getVariables()->willReturn([
+            'result' => 'CHILD1',
         ]);
-        $child->hasChildren()->willReturn(false);
+        $child1->hasChildren()->willReturn(false);
+
+        $child2 = $this->prophesize(ModelInterface::class);
+        $child2->getOptions()->willReturn([]);
+        $child2->getVariables()->willReturn([
+            'result' => 'CHILD2',
+        ]);
+        $child2->hasChildren()->willReturn(false);
 
         $model = $this->prophesize(ModelInterface::class);
         $model->getOptions()->willReturn([]);
@@ -123,8 +130,11 @@ class RendererTest extends TestCase
             'result' => 'RESULT',
         ]);
         $model->hasChildren()->willReturn(true);
-        $model->getChildren()->willReturn([$child->reveal()]);
+        $model->getChildren()->willReturn([
+            $child1->reveal(),
+            $child2->reveal(),
+        ]);
 
-        $this->assertSame('RESULTCHILD', $this->renderer->render($model->reveal()));
+        $this->assertSame('CHILD1CHILD2RESULT', $this->renderer->render($model->reveal()));
     }
 }
