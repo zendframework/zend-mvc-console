@@ -72,12 +72,12 @@ will look for one or the other of the following configuration structures:
 return [
     'view_manager' => [
         'mvc_strategies' => $stringOrArrayOfMvcListenerServiceNames,
-        'strategies' => $stringOrArrayOfViewListenerServiceNames,
+        'strategies'     => $stringOrArrayOfViewListenerServiceNames,
     ],
-    'console' => [
+    'console'      => [
         'view_manager' => [
             'mvc_strategies' => $stringOrArrayOfMvcListenerServiceNames,
-            'strategies' => $stringOrArrayOfViewListenerServiceNames,
+            'strategies'     => $stringOrArrayOfViewListenerServiceNames,
         ],
     ],
 ];
