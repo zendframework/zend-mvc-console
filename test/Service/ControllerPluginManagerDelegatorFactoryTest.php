@@ -21,7 +21,7 @@ class ControllerPluginManagerDelegatorFactoryTest extends TestCase
         $plugins = $this->prophesize(PluginManager::class);
         $plugins->setAlias('CreateConsoleNotFoundModel', CreateConsoleNotFoundModel::class)->shouldBeCalled();
         $plugins->setAlias('createConsoleNotFoundModel', CreateConsoleNotFoundModel::class)->shouldBeCalled();
-        $plugins->setAlias('createConsoleNotFoundModel', CreateConsoleNotFoundModel::class)->shouldBeCalled();
+        $plugins->setAlias('createconsolenotfoundmodel', CreateConsoleNotFoundModel::class)->shouldBeCalled();
         $plugins->setFactory(CreateConsoleNotFoundModel::class, InvokableFactory::class)->shouldBeCalled();
 
         $callback = function () use ($plugins) {

@@ -30,7 +30,7 @@ class ControllerPluginManagerDelegatorFactory implements DelegatorFactoryInterfa
 
         $plugins->setAlias('CreateConsoleNotFoundModel', CreateConsoleNotFoundModel::class);
         $plugins->setAlias('createConsoleNotFoundModel', CreateConsoleNotFoundModel::class);
-        $plugins->setAlias('createConsoleNotFoundModel', CreateConsoleNotFoundModel::class);
+        $plugins->setAlias('createconsolenotfoundmodel', CreateConsoleNotFoundModel::class);
         $plugins->setFactory(CreateConsoleNotFoundModel::class, InvokableFactory::class);
 
         return $plugins;
