@@ -15,6 +15,6 @@ class ConsoleModule
 
     public function getConsoleUsage()
     {
-        
+
     }
 }

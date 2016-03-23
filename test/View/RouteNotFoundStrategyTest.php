@@ -114,11 +114,13 @@ class RouteNotFoundStrategyTest extends TestCase
 
     public function validErrorTypes()
     {
+        // @codingStandardsIgnoreStart
         return [
             'controller-not-found' => [Application::ERROR_CONTROLLER_NOT_FOUND, 'Could not match to a controller'],
             'controller-invalid'   => [Application::ERROR_CONTROLLER_INVALID, 'Invalid controller specified'],
             'router-no-match'      => [Application::ERROR_ROUTER_NO_MATCH, 'Invalid arguments or no arguments provided'],
         ];
+        // @codingStandardsIgnoreEnd
     }
 
     /**
@@ -193,7 +195,9 @@ class RouteNotFoundStrategyTest extends TestCase
         $console->colorize(Argument::containingString('First'), ColorInterface::RED)->willReturn('First');
         $console->colorize(Argument::containingString('Third'), ColorInterface::RED)->willReturn('Third');
         $console->colorize(Argument::containingString('Fourth'), ColorInterface::RED)->willReturn('Fourth');
-        $console->colorize('zend-mvc-console-test --foo', ColorInterface::GREEN)->willReturn('zend-mvc-console-test --foo');
+        $console
+            ->colorize('zend-mvc-console-test --foo', ColorInterface::GREEN)
+            ->willReturn('zend-mvc-console-test --foo');
 
         $container = $this->prophesize(ContainerInterface::class);
         $container->get('ModuleManager')->willReturn($moduleManager->reveal());
