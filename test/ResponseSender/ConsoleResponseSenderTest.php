@@ -78,4 +78,13 @@ class ConsoleResponseSenderTest extends TestCase
         $mockSendResponseEvent->expects($this->any())->method('getResponse')->will($this->returnValue($response));
         return $mockSendResponseEvent;
     }
+
+    public function testInvocationReturnsEarlyIfResponseIsNotAConsoleResponse()
+    {
+        $event = $this->prophesize(SendResponseEvent::class);
+        $event->getResponse()->willReturn(null)->shouldBeCalledTimes(1);
+
+        $sender = new ConsoleResponseSender();
+        $this->assertNull($sender($event->reveal()));
+    }
 }

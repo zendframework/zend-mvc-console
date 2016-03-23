@@ -41,9 +41,10 @@ class RouteMatch extends BaseRouteMatch
     {
         if ($this->matchedRouteName === null) {
             $this->matchedRouteName = $name;
-        } else {
-            $this->matchedRouteName = $name . '/' . $this->matchedRouteName;
+            return $this;
         }
+
+        $this->matchedRouteName = $name . '/' . $this->matchedRouteName;
 
         return $this;
     }

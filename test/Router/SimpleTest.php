@@ -7,13 +7,16 @@
 
 namespace ZendTest\Mvc\Console\Router;
 
+use ArrayObject;
 use PHPUnit_Framework_TestCase as TestCase;
+use Prophecy\Argument;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Console\RouteMatcher\RouteMatcherInterface;
 use Zend\Mvc\Console\Exception\InvalidArgumentException;
 use Zend\Mvc\Console\Router\RouteMatch;
 use Zend\Mvc\Console\Router\Simple;
 use Zend\Router\Http\Segment;
+use Zend\Stdlib\RequestInterface;
 
 class SimpleTest extends TestCase
 {
@@ -963,5 +966,64 @@ class SimpleTest extends TestCase
     {
         $this->setExpectedException(InvalidArgumentException::class);
         new Simple(new \stdClass());
+    }
+
+    public function invalidOptions()
+    {
+        return [
+            'null'       => [null],
+            'true'       => [true],
+            'false'      => [false],
+            'zero'       => [0],
+            'int'        => [1],
+            'zero-float' => [0.0],
+            'float'      => [1.1],
+            'string'     => ['invalid'],
+            'object'     => [(object)[]],
+        ];
+    }
+
+    /**
+     * @dataProvider invalidOptions
+     */
+    public function testFactoryRaisesExceptionForNonTraversableNonArrayOptions($options)
+    {
+        $this->setExpectedException(InvalidArgumentException::class, 'expects an array or Traversable');
+        Simple::factory($options);
+    }
+
+    public function optionsThatDoNotContainRoute()
+    {
+        return [
+            'empty-array'       => [[]],
+            'empty-traversable' => [new ArrayObject([])],
+        ];
+    }
+
+    /**
+     * @dataProvider optionsThatDoNotContainRoute
+     */
+    public function testFactoryRaisesExceptionIfOptionsDoNotContainRoute($options)
+    {
+        $this->setExpectedException(InvalidArgumentException::class, 'Missing "route"');
+        Simple::factory($options);
+    }
+
+    public function testMatchReturnsEarlyForNonConsoleRequests()
+    {
+        $matcher = $this->prophesize(RouteMatcherInterface::class);
+        $matcher->match(Argument::any())->shouldNotBeCalled();
+
+        $request = $this->prophesize(RequestInterface::class)->reveal();
+        $route = new Simple($matcher->reveal());
+        $this->assertNull($route->match($request));
+    }
+
+    public function testAssembleClearsAssembledParams()
+    {
+        $matcher = $this->prophesize(RouteMatcherInterface::class)->reveal();
+        $route = new Simple($matcher);
+        $route->assemble();
+        $this->assertEquals([], $route->getAssembledParams());
     }
 }
