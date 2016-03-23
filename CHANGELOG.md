@@ -33,24 +33,6 @@ All notable changes to this project will be documented in this file, in reverse 
   `AbstractConsoleController` to mark it as abstract, as was always intended,
   but evidently never implemented, in zend-mvc.
 
-## 1.0.1 - TBD
-
-### Added
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
 ## 1.0.0 - 2016-03-23
 
 First stable release.
