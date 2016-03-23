@@ -8,8 +8,13 @@
 namespace ZendTest\Mvc\Console\Controller;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use Prophecy\Argument;
 use Zend\Console\Request as ConsoleRequest;
-use Zend\Http\Request;
+use Zend\Console\Response as ConsoleResponse;
+use Zend\Http\Request as HttpRequest;
+use Zend\Mvc\Console\Controller\Plugin\CreateConsoleNotFoundModel;
+use Zend\Mvc\Console\View\ViewModel;
+use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
 
@@ -39,7 +44,7 @@ class ConsoleControllerTest extends TestCase
 
     public function testDispatchIncorrectRequest()
     {
-        $request = new Request();
+        $request = new HttpRequest();
 
         $this->setExpectedException('\Zend\Mvc\Console\Exception\InvalidArgumentException');
         $this->controller->dispatch($request);
@@ -61,5 +66,26 @@ class ConsoleControllerTest extends TestCase
 
         $this->assertInstanceOf('\Zend\Mvc\Console\Controller\AbstractConsoleController', $controller);
         $this->assertInstanceOf('\Zend\Console\Adapter\AdapterInterface', $console);
+    }
+
+    public function testNotFoundActionInvokesCreateConsoleNotFoundModelPlugin()
+    {
+        $routeMatch = $this->prophesize(RouteMatch::class);
+        $routeMatch->setParam('action', 'not-found')->shouldBeCalled();
+
+        $event = $this->prophesize(MvcEvent::class);
+        $event->getRouteMatch()->willReturn($routeMatch);
+
+        $plugin = new CreateConsoleNotFoundModel();
+        $plugins = $this->prophesize(PluginManager::class);
+        $plugins->setController(Argument::type(TestAsset\ConsoleController::class))->shouldBeCalled();
+        $plugins->get('createConsoleNotFoundModel', Argument::any())->willReturn($plugin);
+
+        $controller = new TestAsset\ConsoleController();
+        $controller->setEvent($event->reveal());
+        $controller->setPluginManager($plugins->reveal());
+
+        $result = $controller->notFoundAction();
+        $this->assertInstanceOf(ViewModel::class, $result);
     }
 }
