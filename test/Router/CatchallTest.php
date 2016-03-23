@@ -8,7 +8,10 @@
 namespace ZendTest\Mvc\Console\Router;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use Zend\Console\Request;
 use Zend\Mvc\Console\Router\Catchall;
+use Zend\Mvc\Console\Router\RouteMatch;
+use Zend\Stdlib\RequestInterface;
 
 class CatchallTest extends TestCase
 {
@@ -26,5 +29,29 @@ class CatchallTest extends TestCase
     public function testFactoryReturnsInstanceForAnyOptionsArray($options)
     {
         $this->assertInstanceOf(Catchall::class, Catchall::factory($options));
+    }
+
+    public function testMatchReturnsEarlyForNonConsoleRequests()
+    {
+        $request = $this->prophesize(RequestInterface::class)->reveal();
+        $route = new Catchall();
+        $this->assertNull($route->match($request));
+    }
+
+    public function testMatchReturnsConstructorParamsForConsoleRequests()
+    {
+        $params = ['foo' => 'bar'];
+        $request = $this->prophesize(Request::class)->reveal();
+        $route = new Catchall($params);
+        $result = $route->match($request);
+        $this->assertInstanceOf(RouteMatch::class, $result);
+        $this->assertEquals($params, $result->getParams());
+    }
+
+    public function testAssembleClearsAssembledParams()
+    {
+        $route = new Catchall();
+        $route->assemble();
+        $this->assertEquals([], $route->getAssembledParams());
     }
 }
