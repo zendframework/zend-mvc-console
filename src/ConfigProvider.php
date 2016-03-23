@@ -38,6 +38,7 @@ class ConfigProvider
             ],
             'delegator_factories' => [
                 'Application'               => [ Service\ConsoleApplicationDelegatorFactory::class ],
+                'ControllerPluginManager'   => [ Service\ControllerPluginManagerDelegatorFactory::class ],
                 'Request'                   => [ Service\ConsoleRequestDelegatorFactory::class ],
                 'Response'                  => [ Service\ConsoleResponseDelegatorFactory::class ],
                 'Router'                    => [ Router\ConsoleRouterDelegatorFactory::class ],
