@@ -10,11 +10,15 @@ namespace Zend\Mvc\Console\Controller;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapter;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Mvc\Console\Exception\InvalidArgumentException;
+use Zend\Mvc\Console\View\ViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Stdlib\RequestInterface;
 use Zend\Stdlib\ResponseInterface;
 
-class AbstractConsoleController extends AbstractActionController
+/**
+  * @method \Zend\Mvc\Console\View\ViewModel createConsoleNotFoundModel()
+ */
+abstract class AbstractConsoleController extends AbstractActionController
 {
     /**
      * @var ConsoleAdapter
@@ -50,5 +54,20 @@ class AbstractConsoleController extends AbstractActionController
             ));
         }
         return parent::dispatch($request, $response);
+    }
+
+    /**
+     * Action called if matched action does not exist.
+     *
+     * @return ViewModel
+     */
+    public function notFoundAction()
+    {
+        $event = $this->getEvent();
+        $routeMatch = $event->getRouteMatch();
+        $routeMatch->setParam('action', 'not-found');
+
+        $helper = $this->plugin('createConsoleNotFoundModel');
+        return $helper();
     }
 }
