@@ -30,6 +30,30 @@ installer](https://zendframework.github.io/zend-component-installer], doing so
 will enable the component in your application, allowing you to immediately start
 developing console applications via your MVC.
 
+> ## Manual installation
+>
+> If you are not using the component installer, you will need to add this
+> component as a module at the start of your module list in your Zend Framework
+> application.
+> 
+> If using a vanilla skeleton application, update `config/application.config.php`:
+> 
+> ```php
+> 'modules' => [
+>     'Zend\Mvc\Console', // add it to the top of your module list
+>     /* ... */
+> ]
+> ```
+> 
+> If using Apigility, update your `config/modules.config.php`:
+> 
+> ```php
+> return [
+>     'Zend\Mvc\Console', // add it to the top of your module list
+>     /* ... */
+> ];
+> ```
+
 ## Deprecated
 
 Due to the amount of integration required to support console tooling via the
