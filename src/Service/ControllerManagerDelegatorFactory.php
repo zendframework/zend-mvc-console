@@ -56,20 +56,17 @@ class ControllerManagerDelegatorFactory implements DelegatorFactoryInterface
     public function injectConsole($first, $second)
     {
         if ($first instanceof ContainerInterface) {
+            // v3
             $container = $first;
             $controller = $second;
         } else {
-            $container = $second;
+            // For v2, we need to pull the parent service locator
+            $container = $second->getServiceLocator() ?: $second;
             $controller = $first;
         }
 
         if (! $controller instanceof AbstractConsoleController) {
             return;
-        }
-
-        // For v2, we need to pull the parent service locator
-        if (! method_exists($container, 'configure')) {
-            $container = $container->getServiceLocator() ?: $container;
         }
 
         $controller->setConsole($container->get('Console'));
