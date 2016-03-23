@@ -8,6 +8,8 @@
 namespace ZendTest\Mvc\Console\View;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use Prophecy\Argument;
+use RuntimeException;
 use Zend\Console\Response;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
@@ -227,5 +229,82 @@ class ExceptionStrategyTest extends TestCase
         foreach ($messages as $message) {
             $this->assertContains($message, $event->getResult()->getResult(), sprintf('Not all errors are rendered'));
         }
+    }
+
+    public function displayExceptionFlags()
+    {
+        return [
+            'true'  => [true],
+            'false' => [false],
+        ];
+    }
+
+    /**
+     * @dataProvider displayExceptionFlags
+     */
+    public function testAllowsUsingCallableMessageForFormatting($expectedFlag)
+    {
+        $exception = new RuntimeException();
+        $messageClosure = function ($e, $displayExceptions) use ($exception, $expectedFlag) {
+            $this->assertSame($exception, $e);
+            $this->assertSame($expectedFlag, $displayExceptions);
+            return 'message';
+        };
+
+        $event = $this->prophesize(MvcEvent::class);
+        $event->getError()->willReturn(Application::ERROR_EXCEPTION);
+        $event->getResult()->willReturn(null);
+        $event->getParam('exception')->willReturn($exception);
+        $event->setResult(Argument::that(function ($arg) {
+            if (! $arg instanceof ViewModel) {
+                return false;
+            }
+
+            if (1 !== $arg->getErrorLevel()) {
+                return false;
+            }
+
+            if ('message' !== $arg->getResult()) {
+                return false;
+            }
+
+            return true;
+        }))->shouldBeCalled();
+
+        $this->strategy->setDisplayExceptions($expectedFlag);
+        $this->strategy->setMessage($messageClosure);
+        $this->assertNull($this->strategy->prepareExceptionViewModel($event->reveal()));
+    }
+
+    public function testDoesNotDisplayExceptionDetailsWhenDisplayExceptionsFlagIsFalse()
+    {
+        $exception = new RuntimeException('SHOULD NOT SEE THIS', -42);
+        $event = $this->prophesize(MvcEvent::class);
+        $event->getError()->willReturn(Application::ERROR_EXCEPTION);
+        $event->getResult()->willReturn(null);
+        $event->getParam('exception')->willReturn($exception);
+        $event->setResult(Argument::that(function ($arg) {
+            if (! $arg instanceof ViewModel) {
+                return false;
+            }
+
+            if (1 !== $arg->getErrorLevel()) {
+                return false;
+            }
+
+            $message = $arg->getResult();
+
+            if (strstr($message, 'RuntimeException')
+                || strstr($message, 'SHOULD NOT SEE THIS')
+                || strstr($message, '-42')
+            ) {
+                return false;
+            }
+
+            return true;
+        }))->shouldBeCalled();
+
+        $this->strategy->setDisplayExceptions(false);
+        $this->assertNull($this->strategy->prepareExceptionViewModel($event->reveal()));
     }
 }
