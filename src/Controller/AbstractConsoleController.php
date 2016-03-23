@@ -18,7 +18,7 @@ use Zend\Stdlib\ResponseInterface;
 /**
   * @method \Zend\Mvc\Console\View\ViewModel createConsoleNotFoundModel()
  */
-class AbstractConsoleController extends AbstractActionController
+abstract class AbstractConsoleController extends AbstractActionController
 {
     /**
      * @var ConsoleAdapter
