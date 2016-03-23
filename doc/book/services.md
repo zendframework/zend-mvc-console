@@ -42,6 +42,8 @@ description of what they do.
 Service Name                    | Delegator Factory                                                   | Description
 ------------------------------- | ------------------------------------------------------------------- | -----------
 Application                     | `Zend\Mvc\Console\Service\ConsoleApplicationDelegatorFactory`       | In a console environment, attaches the `Zend\Mvc\Console\View\ViewManager` to the application instance before returning it.
+ControllerManager               | `Zend\Mvc\Console\Service\ControllerManagerDelegatorFactory`        | Attaches an initializer for injecting `AbstractConsoleController` instances with a console adapter.
+ControllerPluginManager         | `Zend\Mvc\Console\Service\ControllerPluginManagerDelegatorFactory`  | Injects the `CreateConsoleNotFoundModel` plugin into the controller `PluginManager`.
 Request                         | `Zend\Mvc\Console\Service\ConsoleRequestDelegatorFactory`           | If a console environment is detected, replaces the request with a `Zend\Console\Request`.
 Response                        | `Zend\Mvc\Console\Service\ConsoleResponseDelegatorFactory`          | If a console environment is detected, replaces the response with a `Zend\Console\Response`.
 Router                          | `Zend\Mvc\Console\Router\ConsoleRouterDelegatorFactory`             | If a console environment is detected, replaces the router with the `ConsoleRouter` service.
