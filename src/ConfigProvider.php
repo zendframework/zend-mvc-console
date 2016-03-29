@@ -66,6 +66,7 @@ class ConfigProvider
      */
     public function getPluginConfig()
     {
+        // @codingStandardsIgnoreStart
         return [
             'aliases' => [
                 'CreateConsoleNotFoundModel' => Controller\Plugin\CreateConsoleNotFoundModel::class,
@@ -77,5 +78,6 @@ class ConfigProvider
                 Controller\Plugin\CreateConsoleNotFoundModel::class => InvokableFactory::class,
             ],
         ];
+        // @codingStandardsIgnoreEnd
     }
 }
