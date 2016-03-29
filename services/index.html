@@ -301,6 +301,16 @@ description of what they do.</p>
 <td>In a console environment, attaches the <code>Zend\Mvc\Console\View\ViewManager</code> to the application instance before returning it.</td>
 </tr>
 <tr>
+<td>ControllerManager</td>
+<td><code>Zend\Mvc\Console\Service\ControllerManagerDelegatorFactory</code></td>
+<td>Attaches an initializer for injecting <code>AbstractConsoleController</code> instances with a console adapter.</td>
+</tr>
+<tr>
+<td>ControllerPluginManager</td>
+<td><code>Zend\Mvc\Console\Service\ControllerPluginManagerDelegatorFactory</code></td>
+<td>Injects the <code>CreateConsoleNotFoundModel</code> plugin into the controller <code>PluginManager</code>.</td>
+</tr>
+<tr>
 <td>Request</td>
 <td><code>Zend\Mvc\Console\Service\ConsoleRequestDelegatorFactory</code></td>
 <td>If a console environment is detected, replaces the request with a <code>Zend\Console\Request</code>.</td>

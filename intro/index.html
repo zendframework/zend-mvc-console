@@ -177,6 +177,8 @@
     
         <li class="main active"><a href="#introduction">Introduction</a></li>
         
+            <li><a href="#manual-installation">Manual installation</a></li>
+        
             <li><a href="#deprecated">Deprecated</a></li>
         
             <li><a href="#migration">Migration</a></li>
@@ -231,6 +233,26 @@ component, zend-mvc-console. You can install and activate it via composer:</p>
 installer](https://zendframework.github.io/zend-component-installer], doing so
 will enable the component in your application, allowing you to immediately start
 developing console applications via your MVC.</p>
+<blockquote>
+<h2 id="manual-installation">Manual installation</h2>
+<p>If you are not using the component installer, you will need to add this
+component as a module at the start of your module list in your Zend Framework
+application.</p>
+<p>If using a vanilla skeleton application, update <code>config/application.config.php</code>:</p>
+<pre class="codehilite"><code class="language-php">'modules' =&gt; [
+    'Zend\Mvc\Console', // add it to the top of your module list
+    /* ... */
+]</code></pre>
+
+
+<p>If using Apigility, update your <code>config/modules.config.php</code>:</p>
+<pre class="codehilite"><code class="language-php">return [
+    'Zend\Mvc\Console', // add it to the top of your module list
+    /* ... */
+];</code></pre>
+
+
+</blockquote>
 <h2 id="deprecated">Deprecated</h2>
 <p>Due to the amount of integration required to support console tooling via the
 MVC, and because <a href="https://github.com/zfcampus/zf-console">better, more standalone solutions
