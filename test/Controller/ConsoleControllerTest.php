@@ -16,7 +16,7 @@ use Zend\Mvc\Console\Controller\Plugin\CreateConsoleNotFoundModel;
 use Zend\Mvc\Console\View\ViewModel;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteMatch;
+use Zend\Router\RouteMatch;
 
 class ConsoleControllerTest extends TestCase
 {
