@@ -18,7 +18,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#4](https://github.com/zendframework/zend-mvc-console/pull/4) updates the
+  code base to work with zendframework/zend-mvc@e1e42c33. As that revision (a)
+  removes console-related functionality, and (b) removes routing functionality,
+  it detailed further changes to this component required to ensure it runs
+  correctly as a module.
 
 ## 1.1.0 - 2016-03-23
 

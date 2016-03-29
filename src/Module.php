@@ -18,6 +18,7 @@ class Module
     {
         $provider = new ConfigProvider();
         return [
+            'controller_plugins' => $provider->getPluginConfig(),
             'service_manager' => $provider->getDependencyConfig(),
             'console' => ['router' => ['routes' => []]],
         ];

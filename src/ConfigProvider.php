@@ -20,7 +20,8 @@ class ConfigProvider
     public function __invoke()
     {
         return [
-            'dependencies' => $this->getDependencyConfig(),
+            'controller_plugins' => $this->getPluginConfig(),
+            'dependencies'       => $this->getDependencyConfig(),
         ];
     }
 
@@ -56,5 +57,27 @@ class ConfigProvider
                 View\Renderer::class           => InvokableFactory::class,
             ],
         ];
+    }
+
+    /**
+     * Provide controller plugin configuration for this component.
+     *
+     * @return array
+     */
+    public function getPluginConfig()
+    {
+        // @codingStandardsIgnoreStart
+        return [
+            'aliases' => [
+                'CreateConsoleNotFoundModel' => Controller\Plugin\CreateConsoleNotFoundModel::class,
+                'createConsoleNotFoundModel' => Controller\Plugin\CreateConsoleNotFoundModel::class,
+                'createconsolenotfoundmodel' => Controller\Plugin\CreateConsoleNotFoundModel::class,
+                'Zend\Mvc\Controller\Plugin\CreateConsoleNotFoundModel::class' => Controller\Plugin\CreateConsoleNotFoundModel::class,
+            ],
+            'factories' => [
+                Controller\Plugin\CreateConsoleNotFoundModel::class => InvokableFactory::class,
+            ],
+        ];
+        // @codingStandardsIgnoreEnd
     }
 }
