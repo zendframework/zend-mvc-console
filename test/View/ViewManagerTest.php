@@ -24,16 +24,21 @@ use Zend\EventManager\SharedEventManagerInterface;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\Application;
 use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Console\Service\ConsoleExceptionStrategyFactory;
+use Zend\Mvc\Console\Service\ConsoleRouteNotFoundStrategyFactory;
 use Zend\Mvc\Console\Service\ConsoleViewManagerFactory;
+use Zend\Mvc\Console\Service\DefaultRenderingStrategyFactory;
 use Zend\Mvc\Console\View\DefaultRenderingStrategy;
 use Zend\Mvc\Console\View\ExceptionStrategy;
 use Zend\Mvc\Console\View\CreateViewModelListener;
 use Zend\Mvc\Console\View\InjectNamedConsoleParamsListener;
 use Zend\Mvc\Console\View\InjectViewModelListener;
+use Zend\Mvc\Console\View\Renderer;
 use Zend\Mvc\Console\View\RouteNotFoundStrategy;
 use Zend\Mvc\Console\View\ViewManager;
 use Zend\Mvc\Service\ServiceListenerFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
+use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\DispatchableInterface;
 use Zend\View\View;
@@ -243,6 +248,10 @@ class ViewManagerTest extends TestCase
         $this->services->setService('EventManager', $eventManager);
         $this->services->setService('Request', $request);
         $this->services->setService('Response', $response);
+        $this->services->setFactory('ConsoleRouteNotFoundStrategy', ConsoleRouteNotFoundStrategyFactory::class);
+        $this->services->setFactory('ConsoleExceptionStrategy', ConsoleExceptionStrategyFactory::class);
+        $this->services->setFactory('ConsoleDefaultRenderingStrategy', DefaultRenderingStrategyFactory::class);
+        $this->services->setFactory(Renderer::class, InvokableFactory::class);
         $this->services->setAllowOverride(false);
 
         $manager = $this->factory->__invoke($this->services, 'ConsoleViewRenderer');
@@ -271,6 +280,10 @@ class ViewManagerTest extends TestCase
         $this->services->setService('EventManager', $eventManager);
         $this->services->setService('Request', $request);
         $this->services->setService('Response', $response);
+        $this->services->setFactory('ConsoleRouteNotFoundStrategy', ConsoleRouteNotFoundStrategyFactory::class);
+        $this->services->setFactory('ConsoleExceptionStrategy', ConsoleExceptionStrategyFactory::class);
+        $this->services->setFactory('ConsoleDefaultRenderingStrategy', DefaultRenderingStrategyFactory::class);
+        $this->services->setFactory(Renderer::class, InvokableFactory::class);
         $this->services->setAllowOverride(false);
 
         $manager     = new ViewManager;
@@ -281,11 +294,11 @@ class ViewManagerTest extends TestCase
         $manager->onBootstrap($event);
 
         $exceptionStrategy = $this->services->get('ConsoleExceptionStrategy');
-        $this->assertInstanceOf('Zend\Mvc\View\Console\ExceptionStrategy', $exceptionStrategy);
+        $this->assertInstanceOf(ExceptionStrategy::class, $exceptionStrategy);
         $this->assertTrue($exceptionStrategy->displayExceptions());
 
         $routeNotFoundStrategy = $this->services->get('ConsoleRouteNotFoundStrategy');
-        $this->assertInstanceOf('Zend\Mvc\View\Console\RouteNotFoundStrategy', $routeNotFoundStrategy);
+        $this->assertInstanceOf(RouteNotFoundStrategy::class, $routeNotFoundStrategy);
         $this->assertTrue($routeNotFoundStrategy->displayNotFoundReason());
     }
 

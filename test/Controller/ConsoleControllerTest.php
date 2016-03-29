@@ -17,6 +17,7 @@ use Zend\Mvc\Console\View\ViewModel;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\MvcEvent;
 use Zend\Router\RouteMatch;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 class ConsoleControllerTest extends TestCase
 {
@@ -28,6 +29,11 @@ class ConsoleControllerTest extends TestCase
     public function setUp()
     {
         $this->controller = new TestAsset\ConsoleController();
+
+        $plugins = $this->controller->getPluginManager();
+        $plugins->setAlias('createConsoleNotFoundModel', CreateConsoleNotFoundModel::class);
+        $plugins->setFactory(CreateConsoleNotFoundModel::class, InvokableFactory::class);
+
         $routeMatch = new RouteMatch(['controller' => 'controller-sample']);
         $event      = new MvcEvent();
         $event->setRouteMatch($routeMatch);
