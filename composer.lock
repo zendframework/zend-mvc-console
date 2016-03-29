@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e534104245ac99f8750c5de45d0c92c0",
-    "content-hash": "badac3ab64d35b86406b3b4b35467012",
+    "hash": "54a678bd018f51298c8ce341e9e6bacc",
+    "content-hash": "af17ddd6ea48f54eb17254af8ad1a202",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -677,12 +677,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mvc.git",
-                "reference": "2ed15b67c2d7cc60a1ba3c4b3f7075af4934b359"
+                "reference": "e1e42c33c9e329794767d8dd7b92fd644e1d0e1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-mvc/zipball/2ed15b67c2d7cc60a1ba3c4b3f7075af4934b359",
-                "reference": "2ed15b67c2d7cc60a1ba3c4b3f7075af4934b359",
+                "url": "https://api.github.com/repos/zendframework/zend-mvc/zipball/e1e42c33c9e329794767d8dd7b92fd644e1d0e1a",
+                "reference": "e1e42c33c9e329794767d8dd7b92fd644e1d0e1a",
                 "shasum": ""
             },
             "require": {
@@ -690,8 +690,10 @@
                 "php": "^5.5 || ^7.0",
                 "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
                 "zendframework/zend-form": "^2.7",
+                "zendframework/zend-http": "^2.5.4",
                 "zendframework/zend-hydrator": "^1.1 || ^2.1",
                 "zendframework/zend-psr7bridge": "^0.2",
+                "zendframework/zend-router": "^3.0",
                 "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
                 "zendframework/zend-stdlib": "^2.7.5 || ^3.0"
             },
@@ -699,21 +701,16 @@
                 "fabpot/php-cs-fixer": "1.7.*",
                 "phpunit/phpunit": "^4.5",
                 "sebastian/version": "^1.0.4",
-                "zendframework/zend-authentication": "^2.5.3",
                 "zendframework/zend-cache": "^2.6.1",
-                "zendframework/zend-console": "^2.6",
                 "zendframework/zend-di": "^2.6",
                 "zendframework/zend-filter": "^2.6.1",
-                "zendframework/zend-http": "^2.5.4",
                 "zendframework/zend-i18n": "^2.6",
                 "zendframework/zend-inputfilter": "^2.6",
                 "zendframework/zend-json": "^2.6.1",
                 "zendframework/zend-log": "^2.7.1",
                 "zendframework/zend-modulemanager": "^2.7.1",
                 "zendframework/zend-serializer": "^2.6.1",
-                "zendframework/zend-session": "^2.6.2",
                 "zendframework/zend-text": "^2.6",
-                "zendframework/zend-uri": "^2.5",
                 "zendframework/zend-validator": "^2.6",
                 "zendframework/zend-version": "^2.5",
                 "zendframework/zend-view": "^2.6.3"
@@ -721,7 +718,6 @@
             "suggest": {
                 "zendframework/zend-authentication": "Zend\\Authentication component for Identity plugin",
                 "zendframework/zend-config": "Zend\\Config component",
-                "zendframework/zend-console": "Zend\\Console component",
                 "zendframework/zend-di": "Zend\\Di component",
                 "zendframework/zend-filter": "Zend\\Filter component",
                 "zendframework/zend-http": "Zend\\Http component",
@@ -730,10 +726,14 @@
                 "zendframework/zend-json": "Zend\\Json component",
                 "zendframework/zend-log": "Zend\\Log component",
                 "zendframework/zend-modulemanager": "Zend\\ModuleManager component",
+                "zendframework/zend-mvc-console": "zend-mvc-console provides the ability to expose zend-mvc as a console application",
+                "zendframework/zend-mvc-plugin-fileprg": "To provide Post/Redirect/Get functionality around forms that container file uploads",
+                "zendframework/zend-mvc-plugin-flashmessenger": "To provide flash messaging capabilities between requests",
+                "zendframework/zend-mvc-plugin-identity": "To access the authenticated identity (per zend-authentication) in controllers",
+                "zendframework/zend-mvc-plugin-prg": "To provide Post/Redirect/Get functionality within controllers",
                 "zendframework/zend-serializer": "Zend\\Serializer component",
                 "zendframework/zend-session": "Zend\\Session component for FlashMessenger, PRG, and FPRG plugins",
                 "zendframework/zend-text": "Zend\\Text component",
-                "zendframework/zend-uri": "Zend\\Uri component",
                 "zendframework/zend-validator": "Zend\\Validator component",
                 "zendframework/zend-version": "Zend\\Version component",
                 "zendframework/zend-view": "Zend\\View component"
@@ -742,7 +742,7 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.7-dev",
-                    "dev-develop": "2.8-dev"
+                    "dev-develop": "3.0-dev"
                 }
             },
             "autoload": {
@@ -759,7 +759,7 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-03-08 18:57:26"
+            "time": "2016-03-29 18:44:18"
         },
         {
             "name": "zendframework/zend-psr7bridge",
@@ -2193,25 +2193,25 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.3",
+            "version": "v2.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c"
+                "reference": "584e52cb8f788a887553ba82db6caacb1d6260bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/b5ba64cd67ecd6887f63868fa781ca094bd1377c",
-                "reference": "b5ba64cd67ecd6887f63868fa781ca094bd1377c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/584e52cb8f788a887553ba82db6caacb1d6260bb",
+                "reference": "584e52cb8f788a887553ba82db6caacb1d6260bb",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -2238,7 +2238,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-23 15:16:06"
+            "time": "2016-03-04 07:54:35"
         }
     ],
     "aliases": [
