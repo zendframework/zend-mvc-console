@@ -32,10 +32,10 @@ matrix:
       env:
         - DEPS=locked
         - TEST_COVERAGE=true
-        - SITE_URL=https://zendframework.github.io/zend-console
+        - SITE_URL=https://zendframework.github.io/zend-mvc-console
         - GH_USER_NAME="Matthew Weier O'Phinney"
         - GH_USER_EMAIL=matthew@weierophinney.net
-        - GH_REF=github.com/zendframework/zend-console.git
+        - GH_REF=github.com/zendframework/zend-mvc-console.git
         - DEPLOY_DOCS="$(if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then echo -n 'true' ; else echo -n 'false' ; fi)"
         - PATH="$HOME/.local/bin:$PATH"
         - secure: ""
