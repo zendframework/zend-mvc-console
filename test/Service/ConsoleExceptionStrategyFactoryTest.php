@@ -29,13 +29,14 @@ class ConsoleExceptionStrategyFactoryTest extends TestCase
         $this->assertTrue($strategy->displayExceptions());
     }
 
-    public function testProvidesEmptyExceptionMessageWithoutConfiguration()
+    public function testProvidesDefaultExceptionMessageWithoutConfiguration()
     {
         $this->container->has('config')->willReturn(false);
 
         $strategy = $this->factory->__invoke($this->container->reveal(), ExceptionStrategy::class);
         $this->assertInstanceOf(ExceptionStrategy::class, $strategy);
-        $this->assertEquals('', $strategy->getMessage());
+        $plainStrategy = new ExceptionStrategy();
+        $this->assertEquals($plainStrategy->getMessage(), $strategy->getMessage());
     }
 
     public function overrideDisplayExceptionsConfiguration()
