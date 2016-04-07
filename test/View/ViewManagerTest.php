@@ -256,7 +256,7 @@ class ViewManagerTest extends TestCase
 
         $manager = $this->factory->__invoke($this->services, 'ConsoleViewRenderer');
 
-        $application = new Application($config, $this->services, $eventManager, $request, $response);
+        $application = new Application($this->services, $eventManager, $request, $response);
 
         $event = new MvcEvent();
         $event->setApplication($application);
@@ -287,7 +287,7 @@ class ViewManagerTest extends TestCase
         $this->services->setAllowOverride(false);
 
         $manager     = new ViewManager;
-        $application = new Application([], $this->services, $eventManager, $request, $response);
+        $application = new Application($this->services, $eventManager, $request, $response);
         $event       = new MvcEvent();
         $event->setApplication($application);
 
