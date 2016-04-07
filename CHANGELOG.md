@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- This release fixes development requirements to ensure tests can be executed.
 
 ## 1.1.1 - 2016-03-29
 
