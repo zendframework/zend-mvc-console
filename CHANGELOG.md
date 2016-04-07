@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.1.2 - TBD
+## 1.1.2 - 2016-04-07
 
 ### Added
 
@@ -19,6 +19,10 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Fixed
 
 - This release fixes development requirements to ensure tests can be executed.
+- [#5](https://github.com/zendframework/zend-mvc-console/pull/5) fixes the
+  `ConsoleExceptionStrategyFactory` to only inject an exception message if one
+  was present in configuration; previously, it was overriding the default
+  message with an empty string in such situations.
 
 ## 1.1.1 - 2016-03-29
 
