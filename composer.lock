@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "54a678bd018f51298c8ce341e9e6bacc",
-    "content-hash": "af17ddd6ea48f54eb17254af8ad1a202",
+    "hash": "b7718c43500ecfe097cee4bbe19aa557",
+    "content-hash": "b043a82e5466f99bbc487ebf5adfc7c6",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -681,7 +681,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-mvc/zipball/e1e42c33c9e329794767d8dd7b92fd644e1d0e1a",
+                "url": "https://api.github.com/repos/zendframework/zend-mvc/zipball/6005197a92f3e1c00562a12e93ae81f0c61c2ade",
                 "reference": "e1e42c33c9e329794767d8dd7b92fd644e1d0e1a",
                 "shasum": ""
             },
