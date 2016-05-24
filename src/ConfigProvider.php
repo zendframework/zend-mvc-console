@@ -41,7 +41,6 @@ class ConfigProvider
                 'ConsoleRenderer'                 => View\Renderer::class,
             ],
             'delegators' => [
-                'Application'               => [ Service\ConsoleApplicationDelegatorFactory::class ],
                 'ControllerManager'         => [ Service\ControllerManagerDelegatorFactory::class ],
                 'Request'                   => [ Service\ConsoleRequestDelegatorFactory::class ],
                 'Response'                  => [ Service\ConsoleResponseDelegatorFactory::class ],
