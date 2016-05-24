@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.1.8 - TBD
+## 1.1.8 - 2016-05-24
 
 ### Added
 
@@ -18,7 +18,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Re-maps the `ConsoleRouterDelegatorFactory` to
+  `Zend\Router\RouteStackInterface` instead of `Router`, as the former is what
+  zend-router now defines as the canonical service name; this change ensures the
+  delegator factory intercepts correctly.
 
 ## 1.1.7 - 2016-05-24
 
