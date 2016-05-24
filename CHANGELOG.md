@@ -10,7 +10,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Deprecated
 
-- Nothing.
+- The `ConsoleApplicationDelegatorFactory` is deprecated in favor of the
+  `ViewManagerDelegatorFactory`, as the former does not work correctly in unit
+  test situations, and the latter works correctly for both testing and in
+  production usage.
 
 ### Removed
 
