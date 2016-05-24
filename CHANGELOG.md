@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.8 - TBD
+## 1.1.8 - 2016-05-24
 
 ### Added
 
@@ -28,7 +28,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Deprecated
 
-- Nothing.
+- The `ConsoleApplicationDelegatorFactory` is deprecated in favor of the
+  `ViewManagerDelegatorFactory`, as the former does not work correctly in unit
+  test situations, and the latter works correctly for both testing and in
+  production usage.
 
 ### Removed
 
@@ -36,7 +39,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Re-maps the `ConsoleRouterDelegatorFactory` to
+  `Zend\Router\RouteStackInterface` instead of `Router`, as the former is what
+  zend-router now defines as the canonical service name; this change ensures the
+  delegator factory intercepts correctly.
 
 ## 1.1.7 - 2016-05-24
 
