@@ -34,6 +34,8 @@ class ConfigProvider
     {
         return [
             'aliases' => [
+                'console'                         => 'ConsoleAdapter',
+                'Console'                         => 'ConsoleAdapter',
                 'ConsoleDefaultRenderingStrategy' => View\DefaultRenderingStrategy::class,
                 'ConsoleRenderer'                 => View\Renderer::class,
             ],

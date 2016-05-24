@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.6 - TBD
+## 1.1.6 - 2016-05-24
 
 ### Added
 
@@ -36,7 +36,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Updates the `ConfigProvider::getDependencyConfig()` to add aliases for
+  `console` and `Console`, targeting the `ConsoleAdapter` service. These were
+  used internally, and were previously missing definitions.
 
 ## 1.1.5 - 2016-05-24
 
