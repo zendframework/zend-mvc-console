@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.5 - TBD
+## 1.1.5 - 2016-05-24
 
 ### Added
 
@@ -36,7 +36,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Updates the `ConfigProvider::getDependencyConfig()` to remove the delegator
+  entry for `ControllerPluginManager`, as the referenced delegator does not
+  exist (it was never created, as plugins can be provided via configuration).
 
 ## 1.1.4 - 2016-05-24
 
