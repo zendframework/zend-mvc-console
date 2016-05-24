@@ -37,7 +37,7 @@ class ConfigProvider
                 'ConsoleDefaultRenderingStrategy' => View\DefaultRenderingStrategy::class,
                 'ConsoleRenderer'                 => View\Renderer::class,
             ],
-            'delegator_factories' => [
+            'delegators' => [
                 'Application'               => [ Service\ConsoleApplicationDelegatorFactory::class ],
                 'ControllerManager'         => [ Service\ControllerManagerDelegatorFactory::class ],
                 'ControllerPluginManager'   => [ Service\ControllerPluginManagerDelegatorFactory::class ],
