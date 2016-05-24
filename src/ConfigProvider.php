@@ -47,6 +47,7 @@ class ConfigProvider
                 'Router'                    => [ Router\ConsoleRouterDelegatorFactory::class ],
                 SendResponseListener::class => [ Service\ConsoleResponseSenderDelegatorFactory::class ],
                 'ViewHelperManager'         => [ Service\ConsoleViewHelperManagerDelegatorFactory::class ],
+                'ViewManager'               => [ Service\ViewManagerDelegatorFactory::class ],
             ],
             'factories' => [
                 'ConsoleAdapter'               => Service\ConsoleAdapterFactory::class,
