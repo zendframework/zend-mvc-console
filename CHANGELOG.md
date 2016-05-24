@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.2.0 - TBD
+## 1.1.3 - 2016-05-24
 
 ### Added
 
@@ -18,23 +18,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-## 1.1.3 - TBD
-
-### Added
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
+- Updates the zend-mvc constraint to allow using either current development
+  versions of zend-mvc, or stable 3.0 releases once available.
 
 ## 1.1.2 - 2016-04-07
 
