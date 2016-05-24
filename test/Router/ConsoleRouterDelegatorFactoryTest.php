@@ -27,7 +27,7 @@ class ConsoleRouterDelegatorFactoryTest extends TestCase
     /**
      * @dataProvider environments
      */
-    public function testReturnsOriginalServiceWhenRequestedServiceIsNotConsoleRouterOrRouter($consoleFlag)
+    public function testReturnsOriginalServiceWhenNotConsoleEnvironment($consoleFlag)
     {
         $this->setConsoleEnvironment($consoleFlag);
         $container = $this->prophesize(ContainerInterface::class);
@@ -95,7 +95,7 @@ class ConsoleRouterDelegatorFactoryTest extends TestCase
     /**
      * @dataProvider routerServiceNames
      */
-    public function testReturnsOriginalServiceIfRequestedNameIsRouterAndNotInConsoleEnvironment($routerServiceName)
+    public function testReturnsOriginalServiceIfRequestedRoutingInterfaceAndNotInConsoleEnvironment($routerServiceName)
     {
         $this->setConsoleEnvironment(false);
         $container = $this->prophesize(ContainerInterface::class);

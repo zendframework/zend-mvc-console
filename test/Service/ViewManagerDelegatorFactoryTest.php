@@ -14,7 +14,7 @@ use Zend\Mvc\Console\Service\ViewManagerDelegatorFactory;
 class ViewManagerDelegatorFactoryTest extends TestCase
 {
     use FactoryEnvironmentTrait;
-    
+
     public function setUp()
     {
         $this->factory = new ViewManagerDelegatorFactory();
