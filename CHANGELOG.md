@@ -20,6 +20,24 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
+## 1.1.4 - TBD
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 1.1.3 - 2016-05-24
 
 ### Added
