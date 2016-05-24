@@ -20,11 +20,13 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.7 - TBD
+## 1.1.7 - 2016-05-24
 
 ### Added
 
-- Nothing.
+- Adds `Zend\Mvc\Console\Service\ViewManagerDelegatorFactory`, which listens for
+  the `ViewManager` service and, if in a console environment, returns the
+  `ConsoleViewManager` service instead.
 
 ### Deprecated
 
