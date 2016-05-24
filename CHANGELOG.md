@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.4 - TBD
+## 1.1.4 - 2016-05-24
 
 ### Added
 
@@ -36,7 +36,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Updates the `ConfigProvider::getDependencyConfig()` to rename the key
+  `delegator_factories` to `delegators` (as the latter is the key the service
+  manager looks for).
 
 ## 1.1.3 - 2016-05-24
 
