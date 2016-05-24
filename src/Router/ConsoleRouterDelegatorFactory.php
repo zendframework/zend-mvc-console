@@ -22,6 +22,16 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class ConsoleRouterDelegatorFactory implements DelegatorFactoryInterface
 {
     /**
+     * Known router names/aliases; allows auto-selection of console router.
+     *
+     * @var string[]
+     */
+    private $knownRouterNames = [
+        'router',
+        'zend\\router\routestackinterface',
+    ];
+
+    /**
      * @param ContainerInterface $container
      * @param string $name
      * @param callable $callback
@@ -31,8 +41,9 @@ class ConsoleRouterDelegatorFactory implements DelegatorFactoryInterface
     public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
     {
         // Console environment?
-        if ($name === 'ConsoleRouter'                                   // force console router
-            || (strtolower($name) === 'router' && Console::isConsole()) // auto detect console
+        if ($name === 'ConsoleRouter'                                      // force console router
+            || (in_array(strtolower($name), $this->knownRouterNames, true)
+                && Console::isConsole())                                   // auto detect console
         ) {
             return $container->get('ConsoleRouter');
         }

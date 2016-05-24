@@ -8,6 +8,7 @@
 namespace Zend\Mvc\Console;
 
 use Zend\Mvc\SendResponseListener;
+use Zend\Router\RouteStackInterface;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 class ConfigProvider
@@ -40,11 +41,10 @@ class ConfigProvider
                 'ConsoleRenderer'                 => View\Renderer::class,
             ],
             'delegators' => [
-                'Application'               => [ Service\ConsoleApplicationDelegatorFactory::class ],
                 'ControllerManager'         => [ Service\ControllerManagerDelegatorFactory::class ],
                 'Request'                   => [ Service\ConsoleRequestDelegatorFactory::class ],
                 'Response'                  => [ Service\ConsoleResponseDelegatorFactory::class ],
-                'Router'                    => [ Router\ConsoleRouterDelegatorFactory::class ],
+                RouteStackInterface::class  => [ Router\ConsoleRouterDelegatorFactory::class ],
                 SendResponseListener::class => [ Service\ConsoleResponseSenderDelegatorFactory::class ],
                 'ViewHelperManager'         => [ Service\ConsoleViewHelperManagerDelegatorFactory::class ],
                 'ViewManager'               => [ Service\ViewManagerDelegatorFactory::class ],

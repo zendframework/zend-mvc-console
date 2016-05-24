@@ -17,6 +17,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  *
  * If in a console environment, attaches the console view manager as an event
  * listener on the Application prior to returning it.
+ *
+ * @deprecated since 1.1.8 Use the ViewManagerDelegatorFactory instead.
  */
 class ConsoleApplicationDelegatorFactory implements DelegatorFactoryInterface
 {
