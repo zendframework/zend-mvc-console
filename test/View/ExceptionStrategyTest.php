@@ -179,7 +179,21 @@ class ExceptionStrategyTest extends TestCase
         }
     }
 
-    public function testPrepareExceptionViewModelErrorException()
+    public function throwables()
+    {
+        $throwables = ['exception' => [\Exception::class]];
+
+        if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
+            $throwables['error'] = [\Error::class];
+        }
+
+        return $throwables;
+    }
+
+    /**
+     * @dataProvider throwables
+     */
+    public function testPrepareExceptionViewModelErrorException($throwable)
     {
         $errors = [Application::ERROR_EXCEPTION, 'user-defined-error'];
 
@@ -187,7 +201,7 @@ class ExceptionStrategyTest extends TestCase
             $events = new EventManager();
             $this->strategy->attach($events);
 
-            $exception = new \Exception('message foo');
+            $exception = new $throwable('message foo');
             $event = new MvcEvent(MvcEvent::EVENT_DISPATCH_ERROR, null, ['exception' => $exception]);
 
             $event->setError($error);
