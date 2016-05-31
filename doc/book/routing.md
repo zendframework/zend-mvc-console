@@ -75,7 +75,7 @@ This special route will catch all console requests, regardless of the parameters
 ```php
 'default-route' => [
     'type'     => 'catchall',
-    'options' => [
+    'options'  => [
         'route'    => '',
         'defaults' => [
             'controller' => 'Application\Controller\Index',

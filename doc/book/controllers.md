@@ -55,12 +55,11 @@ In this example we'll use the following route:
 ```php
 // in file module/Application/config/module.config.php:
 return [
-    'router' => [
+    'router'  => [
         'routes' => [
             // HTTP routes are here
         ],
     ],
-
     'console' => [
         'router' => [
             'routes' => [
@@ -76,9 +75,8 @@ return [
             ],
         ],
     ],
-
     /* ... */
-);
+];
 ```
 
 This route will match commands such as:
@@ -94,7 +92,6 @@ This route maps to the method `Application\Controller\IndexController::showUsers
 Let's add that method to our controller.
 
 ```php
-<?php
 namespace Application\Controller;
 
 use Application\Model\Users;
@@ -125,15 +122,18 @@ class IndexController extends AbstractActionController
         // Check mode
         $mode = $request->getParam('mode', 'all'); // defaults to 'all'
 
-        $users = array();
+        $users = [];
         switch ($mode) {
             case 'disabled':
                 $users = $this->users->fetchDisabledUsers();
                 break;
+            
             case 'deleted':
                 $users = $this->users->fetchDeletedUsers();
                 break;
+            
             case 'all':
+                
             default:
                 $users = $this->users->fetchAllUsers();
                 break;
@@ -162,15 +162,18 @@ public function showUsersAction()
     // Check mode
     $mode = $request->getParam('mode', 'all'); // defaults to 'all'
 
-    $users = array();
+    $users = [];
     switch ($mode) {
         case 'disabled':
             $users = $this->users->fetchDisabledUsers();
             break;
+
         case 'deleted':
             $users = $this->users->fetchDeletedUsers();
             break;
+
         case 'all':
+
         default:
             $users = $this->users->fetchAllUsers();
             break;
@@ -182,7 +185,6 @@ public function showUsersAction()
     }
 
     $result = '';
-
     foreach ($users as $user) {
         $result .= $user->name . ' ' . $user->email . "\n";
     }
@@ -223,7 +225,9 @@ class IndexController extends AbstractActionController
         // Make sure that we are running in a console and the user has not tricked our
         // application into running this action from a public web server.
         if (! $request instanceof ConsoleRequest) {
-            throw new RuntimeException('You can only use this action from a console!');
+            throw new RuntimeException(
+                'You can only use this action from a console!'
+            );
         }
 
         /* ... */
@@ -260,20 +264,22 @@ class IndexController extends AbstractActionController
     {
         $request = $this->getRequest();
 
-        $users = array();
+        $users = [];
         /* ... fetch users from database ... */
 
         if ($request instanceof HttpRequest) {
             // display a web page with users list
             return new ViewModel($result);
         }
-        
+
         if ($request instanceof ConsoleRequest) {
             // ... prepare console output and return it ...
             return $result;
         }
 
-        throw new RuntimeException('Cannot handle request of type ' . get_class($request));
+        throw new RuntimeException(
+            'Cannot handle request of type ' . get_class($request)
+        );
     }
 }
 ```
@@ -302,7 +308,7 @@ Assuming we have the following route:
 ```php
 'show-users' => [
     'options' => [
-        'route'    => 'show (all|deleted|locked|admin) [<groupName>]'
+        'route'    => 'show (all|deleted|locked|admin) [<groupName>]',
         'defaults' => [
             'controller' => 'Application\Controller\Users',
             'action'     => 'showusers',
@@ -338,15 +344,15 @@ simplifies the branching in our action controllers. We can do this with the foll
 
 ```php
 // inside of config.console.router.routes:
-'show-users' => array(
-    'options' => array(
-        'route'    => 'show (all|deleted|locked|admin):userTypeFilter [<groupName>]'
-        'defaults' => array(
+'show-users' => [
+    'options' => [
+        'route'    => 'show (all|deleted|locked|admin):userTypeFilter [<groupName>]',
+        'defaults' => [
             'controller' => 'Application\Controller\Users',
-            'action'     => 'showusers'
-        )
-    )
-)
+            'action'     => 'showusers',
+        ],
+    ],
+]
 ```
 
 Now we can use a the group name `userTypeFilter` to check which option has been
@@ -366,11 +372,13 @@ public function showUsersAction()
     switch ($userTypeFilter) {
         case 'all':
             // all users
+            
         case 'deleted':
             // deleted users
-        case 'locked'
-           // ...
-           // ...
+            
+        case 'locked':
+            // ...
+            // ...
     }
 }
 ```
@@ -386,7 +394,7 @@ Given the following route:
 ```php
 'find-user' => [
     'options' => [
-        'route'    => 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=] [--email=] ',
+        'route'    => 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=] [--email=]',
         'defaults' => [
             'controller' => 'Application\Controller\Users',
             'action'     => 'find',
@@ -403,14 +411,14 @@ public function findAction()
     $request = $this->getRequest();
 
     // We can retrieve values from value flags using their name
-    $searchId        = $request->getParam('id',        null); // default null
+    $searchId        = $request->getParam('id', null); // default null
     $searchFirstName = $request->getParam('firstName', null);
-    $searchLastName  = $request->getParam('lastName',  null);
-    $searchEmail     = $request->getParam('email',     null);
+    $searchLastName  = $request->getParam('lastName', null);
+    $searchEmail     = $request->getParam('email', null);
 
     // Standard flags that have been matched will be equal to TRUE
-    $isFast          = (bool) $request->getParam('fast',    false); // default false
-    $isVerbose       = (bool) $request->getParam('verbose', false);
+    $isFast    = (bool)$request->getParam('fast', false); // default false
+    $isVerbose = (bool)$request->getParam('verbose', false);
 
     if ($isFast) {
         // perform a fast query ...
