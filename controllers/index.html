@@ -257,12 +257,11 @@ analogous to the way HTTP requests are handled under zend-mvc.</p>
 <p>In this example we'll use the following route:</p>
 <pre class="codehilite"><code class="language-php">// in file module/Application/config/module.config.php:
 return [
-    'router' =&gt; [
+    'router'  =&gt; [
         'routes' =&gt; [
             // HTTP routes are here
         ],
     ],
-
     'console' =&gt; [
         'router' =&gt; [
             'routes' =&gt; [
@@ -278,9 +277,8 @@ return [
             ],
         ],
     ],
-
     /* ... */
-);</code></pre>
+];</code></pre>
 
 
 <p>This route will match commands such as:</p>
@@ -291,8 +289,7 @@ $ php public/index.php show disabled users</code></pre>
 
 <p>This route maps to the method <code>Application\Controller\IndexController::showUsersAction()</code>.</p>
 <p>Let's add that method to our controller.</p>
-<pre class="codehilite"><code class="language-php">&lt;?php
-namespace Application\Controller;
+<pre class="codehilite"><code class="language-php">namespace Application\Controller;
 
 use Application\Model\Users;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -322,15 +319,18 @@ class IndexController extends AbstractActionController
         // Check mode
         $mode = $request-&gt;getParam('mode', 'all'); // defaults to 'all'
 
-        $users = array();
+        $users = [];
         switch ($mode) {
             case 'disabled':
                 $users = $this-&gt;users-&gt;fetchDisabledUsers();
                 break;
+
             case 'deleted':
                 $users = $this-&gt;users-&gt;fetchDeletedUsers();
                 break;
+
             case 'all':
+
             default:
                 $users = $this-&gt;users-&gt;fetchAllUsers();
                 break;
@@ -355,15 +355,18 @@ return a string. Let's modify our example to output a list of users:</p>
     // Check mode
     $mode = $request-&gt;getParam('mode', 'all'); // defaults to 'all'
 
-    $users = array();
+    $users = [];
     switch ($mode) {
         case 'disabled':
             $users = $this-&gt;users-&gt;fetchDisabledUsers();
             break;
+
         case 'deleted':
             $users = $this-&gt;users-&gt;fetchDeletedUsers();
             break;
+
         case 'all':
+
         default:
             $users = $this-&gt;users-&gt;fetchAllUsers();
             break;
@@ -375,7 +378,6 @@ return a string. Let's modify our example to output a list of users:</p>
     }
 
     $result = '';
-
     foreach ($users as $user) {
         $result .= $user-&gt;name . ' ' . $user-&gt;email . &quot;\n&quot;;
     }
@@ -410,7 +412,9 @@ class IndexController extends AbstractActionController
         // Make sure that we are running in a console and the user has not tricked our
         // application into running this action from a public web server.
         if (! $request instanceof ConsoleRequest) {
-            throw new RuntimeException('You can only use this action from a console!');
+            throw new RuntimeException(
+                'You can only use this action from a console!'
+            );
         }
 
         /* ... */
@@ -444,7 +448,7 @@ class IndexController extends AbstractActionController
     {
         $request = $this-&gt;getRequest();
 
-        $users = array();
+        $users = [];
         /* ... fetch users from database ... */
 
         if ($request instanceof HttpRequest) {
@@ -457,7 +461,9 @@ class IndexController extends AbstractActionController
             return $result;
         }
 
-        throw new RuntimeException('Cannot handle request of type ' . get_class($request));
+        throw new RuntimeException(
+            'Cannot handle request of type ' . get_class($request)
+        );
     }
 }</code></pre>
 
@@ -480,7 +486,7 @@ parameters</strong> via the <code>$request</code> instance, using the <code>getP
 <p>Assuming we have the following route:</p>
 <pre class="codehilite"><code class="language-php">'show-users' =&gt; [
     'options' =&gt; [
-        'route'    =&gt; 'show (all|deleted|locked|admin) [&lt;groupName&gt;]'
+        'route'    =&gt; 'show (all|deleted|locked|admin) [&lt;groupName&gt;]',
         'defaults' =&gt; [
             'controller' =&gt; 'Application\Controller\Users',
             'action'     =&gt; 'showusers',
@@ -512,15 +518,15 @@ public function showUsersAction()
 <p>In case of parameter alternatives, it is a good idea to <strong>assign a name to the group</strong>, which
 simplifies the branching in our action controllers. We can do this with the following syntax:</p>
 <pre class="codehilite"><code class="language-php">// inside of config.console.router.routes:
-'show-users' =&gt; array(
-    'options' =&gt; array(
-        'route'    =&gt; 'show (all|deleted|locked|admin):userTypeFilter [&lt;groupName&gt;]'
-        'defaults' =&gt; array(
+'show-users' =&gt; [
+    'options' =&gt; [
+        'route'    =&gt; 'show (all|deleted|locked|admin):userTypeFilter [&lt;groupName&gt;]',
+        'defaults' =&gt; [
             'controller' =&gt; 'Application\Controller\Users',
-            'action'     =&gt; 'showusers'
-        )
-    )
-)</code></pre>
+            'action'     =&gt; 'showusers',
+        ],
+    ],
+]</code></pre>
 
 
 <p>Now we can use a the group name <code>userTypeFilter</code> to check which option has been
@@ -538,11 +544,13 @@ selected by the user:</p>
     switch ($userTypeFilter) {
         case 'all':
             // all users
+
         case 'deleted':
             // deleted users
-        case 'locked'
-           // ...
-           // ...
+
+        case 'locked':
+            // ...
+            // ...
     }
 }</code></pre>
 
@@ -554,7 +562,7 @@ values, as provided by the user. Non-value flags will be equal to <code>true</co
 <p>Given the following route:</p>
 <pre class="codehilite"><code class="language-php">'find-user' =&gt; [
     'options' =&gt; [
-        'route'    =&gt; 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=] [--email=] ',
+        'route'    =&gt; 'find user [--fast] [--verbose] [--id=] [--firstName=] [--lastName=] [--email=]',
         'defaults' =&gt; [
             'controller' =&gt; 'Application\Controller\Users',
             'action'     =&gt; 'find',
@@ -569,14 +577,14 @@ values, as provided by the user. Non-value flags will be equal to <code>true</co
     $request = $this-&gt;getRequest();
 
     // We can retrieve values from value flags using their name
-    $searchId        = $request-&gt;getParam('id',        null); // default null
+    $searchId        = $request-&gt;getParam('id', null); // default null
     $searchFirstName = $request-&gt;getParam('firstName', null);
-    $searchLastName  = $request-&gt;getParam('lastName',  null);
-    $searchEmail     = $request-&gt;getParam('email',     null);
+    $searchLastName  = $request-&gt;getParam('lastName', null);
+    $searchEmail     = $request-&gt;getParam('email', null);
 
     // Standard flags that have been matched will be equal to TRUE
-    $isFast          = (bool) $request-&gt;getParam('fast',    false); // default false
-    $isVerbose       = (bool) $request-&gt;getParam('verbose', false);
+    $isFast    = (bool)$request-&gt;getParam('fast', false); // default false
+    $isVerbose = (bool)$request-&gt;getParam('verbose', false);
 
     if ($isFast) {
         // perform a fast query ...

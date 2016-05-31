@@ -346,12 +346,12 @@ will look for one or the other of the following configuration structures:</p>
 <pre class="codehilite"><code class="language-php">return [
     'view_manager' =&gt; [
         'mvc_strategies' =&gt; $stringOrArrayOfMvcListenerServiceNames,
-        'strategies' =&gt; $stringOrArrayOfViewListenerServiceNames,
+        'strategies'     =&gt; $stringOrArrayOfViewListenerServiceNames,
     ],
-    'console' =&gt; [
+    'console'      =&gt; [
         'view_manager' =&gt; [
             'mvc_strategies' =&gt; $stringOrArrayOfMvcListenerServiceNames,
-            'strategies' =&gt; $stringOrArrayOfViewListenerServiceNames,
+            'strategies'     =&gt; $stringOrArrayOfViewListenerServiceNames,
         ],
     ],
 ];</code></pre>

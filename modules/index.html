@@ -263,11 +263,13 @@ glance which modules expose console commands.</p>
 <p>Let's create and load a second module that provides a banner:</p>
 <pre class="codehilite"><code class="language-php">&lt;?php
 // config/application.config.php
-return array(
-    'modules' =&gt; array(
+return [
+    'modules' =&gt; [
         'Application',
-        'User',     // &lt;- load user module in module/User
-    ),</code></pre>
+        'User', // &lt;- load user module in module/User
+    ],
+    // ...
+];</code></pre>
 
 
 <p>The <code>User</code> module will provide info about itself:</p>
@@ -414,7 +416,7 @@ readability.</p>
         [ '--quick',     'Perform a &quot;quick&quot; operation' ],
         [ '-v',          'Same as --verbose' ],
         [ '-w',          'Wide output'],
-    );
+    ];
 }</code></pre>
 
 
@@ -465,7 +467,7 @@ with its own alignment and column widths.</p>
         [ '--quick',     '&quot;quick&quot; operation', 'Do not check integrity, just make changes and finish'],
         [ '-v',          'Same as --verbose', 'Display additional information during processing'],
 
-    );
+    ];
 }</code></pre>
 
 
