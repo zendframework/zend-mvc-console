@@ -10,6 +10,7 @@ use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase as TestCase;
 use Prophecy\Argument;
 use ReflectionClass;
+use ReflectionMethod;
 use Zend\Console\Adapter\AdapterInterface;
 use Zend\Console\ColorInterface;
 use Zend\Console\Request;
@@ -232,5 +233,32 @@ class RouteNotFoundStrategyTest extends TestCase
         }))->shouldBeCalled();
 
         $this->assertNull($this->strategy->handleRouteNotFoundError($event->reveal()));
+    }
+
+    public function throwables()
+    {
+        $throwables = ['exception' => [\Exception::class]];
+
+        if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
+            $throwables['error'] = [\Error::class];
+        }
+
+        return $throwables;
+    }
+
+    /**
+     * @dataProvider throwables
+     */
+    public function testWillTraceAnyThrowableWhenAllowedToReportNotFoundReason($throwable)
+    {
+        $event = new MvcEvent();
+        $event->setParam('exception', new $throwable('EXCEPTION THROWN'));
+
+        $r = new ReflectionMethod($this->strategy, 'reportNotFoundReason');
+        $r->setAccessible(true);
+
+        $report = $r->invoke($this->strategy, $event);
+        $this->assertContains('Reason for failure: Unknown', $report);
+        $this->assertContains('Exception: EXCEPTION THROWN', $report);
     }
 }

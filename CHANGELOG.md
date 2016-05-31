@@ -2,11 +2,13 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.1.9 - TBD
+## 1.1.9 - 2016-05-31
 
 ### Added
 
-- Nothing.
+- [#7](https://github.com/zendframework/zend-mvc-console/pull/7) adds support
+  for handling any PHP 7 `Throwable`, not just `Exception`s, within the
+  `RouteNotFoundStrategy` and `ExceptionStrategy`.
 
 ### Deprecated
 
