@@ -72,11 +72,13 @@ Let's create and load a second module that provides a banner:
 ```php
 <?php
 // config/application.config.php
-return array(
-    'modules' => array(
+return [
+    'modules' => [
         'Application',
-        'User',     // <- load user module in module/User
-    ),
+        'User', // <- load user module in module/User
+    ],
+    // ...
+];
 ```
 
 The `User` module will provide info about itself:
@@ -246,7 +248,7 @@ public function getConsoleUsage(Console $console)
         [ '--quick',     'Perform a "quick" operation' ],
         [ '-v',          'Same as --verbose' ],
         [ '-w',          'Wide output'],
-    );
+    ];
 }
 ```
 
@@ -305,7 +307,7 @@ public function getConsoleUsage(Console $console)
         [ '--quick',     '"quick" operation', 'Do not check integrity, just make changes and finish'],
         [ '-v',          'Same as --verbose', 'Display additional information during processing'],
 
-    );
+    ];
 }
 ```
 
