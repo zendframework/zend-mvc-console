@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.10 - TBD
+## 1.1.10 - 2016-05-31
 
 ### Added
 
@@ -36,7 +36,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#8](https://github.com/zendframework/zend-mvc-console/pull/8) marks zend-mvc
+  versions less than 3.0.0 as conflicts.
 
 ## 1.1.9 - 2016-05-31
 
