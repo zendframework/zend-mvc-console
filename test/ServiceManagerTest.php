@@ -1,4 +1,5 @@
 <?php
+namespace ZendTest\Mvc\Console;
 
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -26,8 +27,7 @@ class ServiceManagerTest extends TestCase
             ],
             'delegators' => [
                 SendResponseListener::class => [
-                    function(ContainerInterface $container, $name, callable $callback, array $options = null)
-                    {
+                    function (ContainerInterface $container, $name, callable $callback, array $options = null) {
                         $consoleResponseSenderDelegatorFactory = new ConsoleResponseSenderDelegatorFactory();
                         $sendResponseListener = $consoleResponseSenderDelegatorFactory->__invoke($container, $name, $callback, $options);
                         $this->assertInstanceOf(SendResponseListener::class, $sendResponseListener);
