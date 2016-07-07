@@ -14,6 +14,8 @@ use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\Mvc\Console\ResponseSender\ConsoleResponseSender;
 use Zend\Mvc\Console\Service\ConsoleResponseSenderDelegatorFactory;
 
+use ReflectionProperty;
+
 class ServiceManagerTest extends TestCase
 {
     public function testEventManagerOverridden()
