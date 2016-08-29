@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 1.1.11 - TBD
+## 1.1.11 - 2016-08-29
 
 ### Added
 
@@ -36,7 +36,12 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#11](https://github.com/zendframework/zend-mvc-console/pull/11) ups the
+  minimum supported zend-mvc version to 3.0.3, to ensure that the
+  `SendResponseListenerFactory` is present, fixing an issue with console output.
+- [#15](https://github.com/zendframework/zend-mvc-console/pull/15) promotes
+  `Zend\Mvc\Console\View\ViewManager::getView()` to public visibility,
+  matching the API of `Zend\Mvc\View\Http\ViewManager`.
 
 ## 1.1.10 - 2016-05-31
 
