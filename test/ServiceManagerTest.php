@@ -60,8 +60,9 @@ class ServiceManagerTest extends TestCase
     {
         $count = 0;
         $found = false;
+        $listeners = $this->getListenersForEvent(SendResponseEvent::EVENT_SEND_RESPONSE, $eventManager, true);
 
-        foreach ($this->getListenersForEvent(SendResponseEvent::EVENT_SEND_RESPONSE, $eventManager, true) as $priority => $listener) {
+        foreach ($listeners as $priority => $listener) {
             $count++;
             if ($priority === -2000
                 && $listener instanceof ConsoleResponseSender
