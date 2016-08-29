@@ -447,4 +447,18 @@ class ViewManagerTest extends TestCase
         $manager = new ViewManager();
         $this->assertNull($manager->onBootstrap($event->reveal()));
     }
+
+    /**
+     * @group 14
+     */
+    public function testViewAccessorIsPublic()
+    {
+        $view = $this->prophesize(View::class)->reveal();
+        $viewmanager = new ViewManager();
+        $r = new ReflectionProperty($viewmanager, 'view');
+        $r->setAccessible(true);
+        $r->setValue($viewmanager, $view);
+
+        $this->assertSame($view, $viewmanager->getView());
+    }
 }

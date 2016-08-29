@@ -102,7 +102,7 @@ class ViewManager implements ListenerAggregateInterface
      *
      * @return View
      */
-    private function getView()
+    public function getView()
     {
         if ($this->view) {
             return $this->view;
