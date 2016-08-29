@@ -14,6 +14,7 @@ use Zend\Mvc\Console\ResponseSender\ConsoleResponseSender;
 use Zend\Mvc\Console\Service\ConsoleResponseSenderDelegatorFactory;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
 use Zend\Mvc\SendResponseListener;
+use Zend\Mvc\Service\SendResponseListenerFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -24,6 +25,11 @@ class ServiceManagerTest extends TestCase
 {
     use EventListenerIntrospectionTrait;
 
+    /**
+     * @group 10
+     * @group 11
+     * @group 12
+     */
     public function testEventManagerOverridden()
     {
         $minimalConfig = [
@@ -31,20 +37,11 @@ class ServiceManagerTest extends TestCase
                 'SendResponseListener' => SendResponseListener::class,
             ],
             'factories' => [
-                SendResponseListener::class => InvokableFactory::class
+                SendResponseListener::class => SendResponseListenerFactory::class,
             ],
             'delegators' => [
                 SendResponseListener::class => [
-                    function (ContainerInterface $container, $name, callable $callback, array $options = null) {
-                        $consoleResponseSenderDelegatorFactory = new ConsoleResponseSenderDelegatorFactory();
-                        $sendResponseListener = $consoleResponseSenderDelegatorFactory->__invoke($container, $name, $callback, $options);
-                        $this->assertInstanceOf(SendResponseListener::class, $sendResponseListener);
-
-                        $eventManager = $sendResponseListener->getEventManager();
-                        $this->assertEvents($eventManager);
-
-                        return $sendResponseListener;
-                    }
+                    ConsoleResponseSenderDelegatorFactory::class,
                 ],
             ]
         ];
