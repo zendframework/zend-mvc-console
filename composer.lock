@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eaf15f5ff9d385352cb0c97d354fa1dc",
-    "content-hash": "e78d31016502ffc1bbac056fc8dc417e",
+    "hash": "bb5f5398612c2c0eef9dd01167dbcdc4",
+    "content-hash": "d605b9daa1e846935805f121b9cba16d",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -395,16 +395,16 @@
         },
         {
             "name": "zendframework/zend-mvc",
-            "version": "dev-develop",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mvc.git",
-                "reference": "05318fdc4c221aadf90dc843bf99a2de8c705e5a"
+                "reference": "69ac3e4dcf0639101ac71478dcb39941ba4e7e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-mvc/zipball/05318fdc4c221aadf90dc843bf99a2de8c705e5a",
-                "reference": "05318fdc4c221aadf90dc843bf99a2de8c705e5a",
+                "url": "https://api.github.com/repos/zendframework/zend-mvc/zipball/69ac3e4dcf0639101ac71478dcb39941ba4e7e7e",
+                "reference": "69ac3e4dcf0639101ac71478dcb39941ba4e7e7e",
                 "shasum": ""
             },
             "require": {
@@ -438,8 +438,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev",
-                    "dev-develop": "3.0-dev"
+                    "dev-master": "3.0-dev",
+                    "dev-develop": "3.1-dev"
                 }
             },
             "autoload": {
@@ -456,7 +456,7 @@
                 "mvc",
                 "zf2"
             ],
-            "time": "2016-04-18 20:36:21"
+            "time": "2016-08-29 18:41:32"
         },
         {
             "name": "zendframework/zend-router",
@@ -2157,13 +2157,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zendframework/zend-mvc": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^5.5 || ^7.0"
+        "php": "^5.6 || ^7.0"
     },
     "platform-dev": []
 }
