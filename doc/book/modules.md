@@ -24,7 +24,7 @@ $ php public/index.php
 
 By default, it will simply output the current ZF 2 version, like this:
 
-![Basic console invocation](../images/zend.console.empty.png)
+![Basic console invocation](images/zend.console.empty.png)
 
 Our `Application` module (and any other module) can provide an **application
 banner**. In order to do so, our `Module` class has to implement
@@ -65,7 +65,7 @@ glance which modules expose console commands.
 
 If we execute our console application now, we'll see the newly created banner:
 
-![Application banner](../images/zend.console.banner.png)
+![Application banner](images/zend.console.banner.png)
 
 Let's create and load a second module that provides a banner:
 
@@ -106,7 +106,7 @@ class Module implements ConsoleBannerProviderInterface
 Because the `User` module is loaded after the `Application` module, the result
 will look like this:
 
-![Two modules](../images/zend.console.banner2.png)
+![Two modules](images/zend.console.banner2.png)
 
 > ### Application banner display
 >
@@ -160,7 +160,7 @@ class Module implements
 
 This will display the following information:
 
-![Console usage](../images/zend.console.usage.png)
+![Console usage](images/zend.console.usage.png)
 
 Similar to [application banners](#application-banner), multiple modules can
 provide usage information, which will be joined together and displayed to the
@@ -193,7 +193,7 @@ public function getConsoleUsage(Console $console)
 }
 ```
 
-![Free-form usage text](../images/zend.console.usage2.png)
+![Free-form usage text](images/zend.console.usage2.png)
 
 > #### Usage text is provided as-is
 >
@@ -220,7 +220,7 @@ public function getConsoleUsage(Console $console)
 }
 ```
 
-![Listing multiple commands](../images/zend.console.usage3.png)
+![Listing multiple commands](images/zend.console.usage3.png)
 
 > #### Command list alignment
 >
@@ -252,7 +252,7 @@ public function getConsoleUsage(Console $console)
 }
 ```
 
-![Parameter lists](../images/zend.console.usage4.png)
+![Parameter lists](images/zend.console.usage4.png)
 
 This method can be used to display more than 2 columns of information:
 
@@ -269,7 +269,7 @@ public function getConsoleUsage(Console $console)
 }
 ```
 
-![Multiple columns](../images/zend.console.usage5.png)
+![Multiple columns](images/zend.console.usage5.png)
 
 > #### Alignment
 >
@@ -311,7 +311,7 @@ public function getConsoleUsage(Console $console)
 }
 ```
 
-![Mixed styles](../images/zend.console.usage6.png)
+![Mixed styles](images/zend.console.usage6.png)
 
 ## Best practices
 
