@@ -58,10 +58,10 @@ developing console applications via your MVC.
 
 Due to the amount of integration required to support console tooling via the
 MVC, and because [better, more standalone solutions
-exist](https://github.com/zfcampus/zf-console), we will not be maintaining
+exist](https://github.com/zendframework/zend-console), we will not be maintaining
 zend-mvc-console long term. We strongly urge developers to start migrating their
 MVC-based console tooling to use other libraries, such as
-[zf-console](https://github.com/zfcampus/zf-console).
+[zf-console](https://github.com/zendframework/zend-console).
 
 ## Migration
 
