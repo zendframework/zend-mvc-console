@@ -10,7 +10,6 @@ namespace ZendTest\Mvc\Console\Controller;
 use PHPUnit_Framework_TestCase as TestCase;
 use Prophecy\Argument;
 use Zend\Console\Request as ConsoleRequest;
-use Zend\Console\Response as ConsoleResponse;
 use Zend\Http\Request as HttpRequest;
 use Zend\Mvc\Console\Controller\Plugin\CreateConsoleNotFoundModel;
 use Zend\Mvc\Console\View\ViewModel;

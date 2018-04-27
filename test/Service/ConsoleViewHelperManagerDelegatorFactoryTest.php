@@ -11,8 +11,8 @@ use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase as TestCase;
 use Prophecy\Argument;
 use Zend\Mvc\Console\Service\ConsoleViewHelperManagerDelegatorFactory;
-use Zend\View\HelperPluginManager;
 use Zend\View\Helper;
+use Zend\View\HelperPluginManager;
 
 class ConsoleViewHelperManagerDelegatorFactoryTest extends TestCase
 {

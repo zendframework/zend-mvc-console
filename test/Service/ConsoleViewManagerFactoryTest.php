@@ -7,7 +7,6 @@
 
 namespace ZendTest\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Mvc\Console\Service\ConsoleViewManagerFactory;
 use Zend\Mvc\Console\View\ViewManager;
