@@ -35,7 +35,7 @@ ConsoleRenderer                 | `Zend\Mvc\Console\View\Renderer`
 When operating in a console environment, several typical zend-mvc services need
 to operate differently, or require alternate services. To enable that,
 zend-mvc-console provides a number of [delegator
-factories](http://zendframework.github.io/zend-servicemanager/delegators/). The
+factories](http://docs.zendframework.com/zend-servicemanager/delegators/). The
 following is a list of those provided, the service they override, and a
 description of what they do.
 
@@ -67,7 +67,7 @@ Routing configuration is detailed in the [routing chapter](routing.md).
 ### ViewManager
 
 `Zend\Mvc\Console\View\ViewManager` acts similarly to its [zend-mvc
-equivalent](http://zendframework.github.io/zend-mvc/services/#viewmanager), and
+equivalent](http://docs.zendframework.com/zend-mvc/services/#viewmanager), and
 will look for one or the other of the following configuration structures:
 
 ```php

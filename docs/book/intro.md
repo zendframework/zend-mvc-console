@@ -26,7 +26,7 @@ $ composer require zendframework/zend-mvc-console
 ```
 
 Assuming you are using the [component
-installer](https://zendframework.github.io/zend-component-installer], doing so
+installer](https://docs.zendframework.com/zend-component-installer], doing so
 will enable the component in your application, allowing you to immediately start
 developing console applications via your MVC.
 
@@ -35,18 +35,18 @@ developing console applications via your MVC.
 > If you are not using the component installer, you will need to add this
 > component as a module at the start of your module list in your Zend Framework
 > application.
-> 
+>
 > If using a vanilla skeleton application, update `config/application.config.php`:
-> 
+>
 > ```php
 > 'modules' => [
 >     'Zend\Mvc\Console', // add it to the top of your module list
 >     /* ... */
 > ]
 > ```
-> 
+>
 > If using Apigility, update your `config/modules.config.php`:
-> 
+>
 > ```php
 > return [
 >     'Zend\Mvc\Console', // add it to the top of your module list
