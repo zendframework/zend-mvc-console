@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\View;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\Console\View\CreateViewModelListener;

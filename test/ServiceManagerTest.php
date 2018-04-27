@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\Console\ResponseSender\ConsoleResponseSender;
 use Zend\Mvc\Console\Service\ConsoleResponseSenderDelegatorFactory;

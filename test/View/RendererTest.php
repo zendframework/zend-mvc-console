@@ -7,7 +7,7 @@
 
 namespace Zend\Mvc\Console\View;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Filter\FilterChain;
 use Zend\View\Model\ModelInterface;
 

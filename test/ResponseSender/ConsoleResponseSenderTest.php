@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\ResponseSender;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Response;
 use Zend\Mvc\ResponseSender\SendResponseEvent;
 use Zend\Stdlib\ResponseInterface;
@@ -30,7 +30,7 @@ class ConsoleResponseSenderTest extends TestCase
     public function testSendResponseTwoTimesPrintsResponseOnceAndReturnsErrorLevel()
     {
         $returnValue = false;
-        $mockResponse = $this->getMock(Response::class);
+        $mockResponse = $this->createMock(Response::class);
         $mockResponse
             ->expects($this->once())
             ->method('getContent')
@@ -71,10 +71,9 @@ class ConsoleResponseSenderTest extends TestCase
 
     protected function getSendResponseEventMock($response)
     {
-        $mockSendResponseEvent = $this->getMock(
-            SendResponseEvent::class,
-            ['getResponse', 'contentSent', 'setContentSent']
-        );
+        $mockSendResponseEvent = $this->getMockBuilder(SendResponseEvent::class)
+            ->setMethods(['getResponse', 'contentSent', 'setContentSent'])
+            ->getMock();
         $mockSendResponseEvent->expects($this->any())->method('getResponse')->will($this->returnValue($response));
         return $mockSendResponseEvent;
     }

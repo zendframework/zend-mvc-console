@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\View;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use RuntimeException;
 use Zend\Console\Response;

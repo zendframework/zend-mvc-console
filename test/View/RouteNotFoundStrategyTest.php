@@ -7,7 +7,7 @@
 namespace ZendTest\Mvc\Console\View;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionClass;
 use ReflectionMethod;
@@ -164,7 +164,8 @@ class RouteNotFoundStrategyTest extends TestCase
         $app->getServiceManager()->willReturn($container->reveal());
         $event->getApplication()->willReturn($app->reveal());
 
-        $this->setExpectedException(RuntimeException::class, 'Console adapter');
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Console adapter');
         $this->strategy->handleRouteNotFoundError($event->reveal());
     }
 

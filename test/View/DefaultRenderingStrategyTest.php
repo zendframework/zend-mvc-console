@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\View;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Console\Adapter\AbstractAdapter;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
@@ -67,7 +67,7 @@ class DefaultRenderingStrategyTest extends TestCase
 
     public function testIgnoresNonConsoleModelNotContainingResultKeyWhenObtainingResult()
     {
-        $console = $this->getMock(AbstractAdapter::class);
+        $console = $this->createMock(AbstractAdapter::class);
         $console
             ->expects($this->any())
             ->method('encodeText')
@@ -78,7 +78,7 @@ class DefaultRenderingStrategyTest extends TestCase
         $sm->setService('console', $console);
 
         /* @var \PHPUnit_Framework_MockObject_MockObject|ApplicationInterface $mockApplication */
-        $mockApplication = $this->getMock(ApplicationInterface::class);
+        $mockApplication = $this->createMock(ApplicationInterface::class);
         $mockApplication
             ->expects($this->any())
             ->method('getServiceManager')
@@ -101,7 +101,7 @@ class DefaultRenderingStrategyTest extends TestCase
 
     public function testIgnoresNonModel()
     {
-        $console = $this->getMock(AbstractAdapter::class);
+        $console = $this->createMock(AbstractAdapter::class);
         $console
             ->expects($this->any())
             ->method('encodeText')
@@ -112,7 +112,7 @@ class DefaultRenderingStrategyTest extends TestCase
         $sm->setService('console', $console);
 
         /* @var \PHPUnit_Framework_MockObject_MockObject|ApplicationInterface $mockApplication */
-        $mockApplication = $this->getMock(ApplicationInterface::class);
+        $mockApplication = $this->createMock(ApplicationInterface::class);
         $mockApplication
             ->expects($this->any())
             ->method('getServiceManager')
