@@ -12,12 +12,12 @@ use Prophecy\Argument;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Http\Request as HttpRequest;
 use Zend\Mvc\Console\Controller\Plugin\CreateConsoleNotFoundModel;
+use Zend\Mvc\Console\Exception\InvalidArgumentException;
 use Zend\Mvc\Console\View\ViewModel;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\MvcEvent;
 use Zend\Router\RouteMatch;
 use Zend\ServiceManager\Factory\InvokableFactory;
-use Zend\Mvc\Console\Exception\InvalidArgumentException;
 
 class ConsoleControllerTest extends TestCase
 {
