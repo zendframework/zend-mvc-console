@@ -353,12 +353,12 @@ class SimpleTest extends TestCase
             'mandatory-literal-namedAlternative-match-1' => [
                 'foo ( bar | baz ):altGroup',
                 ['foo','bar'],
-                ['foo' => null, 'altGroup'=>'bar', 'bar' => true, 'baz' => false]
+                ['foo' => null, 'altGroup' => 'bar', 'bar' => true, 'baz' => false]
             ],
             'mandatory-literal-namedAlternative-match-2' => [
                 'foo ( bar |   baz   ):altGroup9',
                 ['foo','baz'],
-                ['foo' => null, 'altGroup9'=>'baz', 'bar' => false, 'baz' => true]
+                ['foo' => null, 'altGroup9' => 'baz', 'bar' => false, 'baz' => true]
             ],
             'mandatory-literal-namedAlternative-mismatch' => [
                 'foo ( bar |   baz   ):altGroup9',
@@ -410,7 +410,7 @@ class SimpleTest extends TestCase
             'optional-literal-namedAlternative-mismatch' => [
                 'foo [ bar | baz ]:altGroup9',
                 ['foo'],
-                ['foo' => null, 'altGroup9'=> null, 'bar' => false, 'baz' => false]
+                ['foo' => null, 'altGroup9' => null, 'bar' => false, 'baz' => false]
             ],
 
             // -- value params

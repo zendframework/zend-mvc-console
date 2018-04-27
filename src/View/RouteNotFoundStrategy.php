@@ -152,8 +152,8 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
         $usage = $this->getConsoleUsage($console, $scriptName, $mm);
 
         // Inject the text into view
-        $result  = $banner ? rtrim($banner, "\r\n")        : '';
-        $result .= $usage  ? "\n\n" . trim($usage, "\r\n") : '';
+        $result  = $banner ? rtrim($banner, "\r\n") : '';
+        $result .= $usage ? "\n\n" . trim($usage, "\r\n") : '';
         $result .= "\n"; // to ensure we output a final newline
         $result .= $this->reportNotFoundReason($e);
         $model->setResult($result);
@@ -392,7 +392,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
         for ($x = 1; $x <= $cols; $x += 1) {
             $maxW[$x] = 0;
             foreach ($data as $row) {
-                $maxW[$x] = max($maxW[$x], $strWrapper->strlen($row[$x-1]) + $padding * 2);
+                $maxW[$x] = max($maxW[$x], $strWrapper->strlen($row[$x - 1]) + $padding * 2);
             }
         }
 
@@ -419,7 +419,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
          * (minus 1 character to prevent double wrapping at the edge of the
          * screen).
          */
-        $maxW[$cols] = $consoleWidth - $width -1;
+        $maxW[$cols] = $consoleWidth - $width - 1;
         $table       = new Table\Table();
         $table->setColumnWidths($maxW);
         $table->setDecorator(new Table\Decorator\Blank());
