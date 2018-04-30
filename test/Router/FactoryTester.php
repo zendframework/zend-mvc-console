@@ -8,7 +8,7 @@
 namespace ZendTest\Mvc\Console\Router;
 
 use ArrayIterator;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Console\Exception\InvalidArgumentException;
 use Zend\Router\Exception\InvalidArgumentException as RouterInvalidArgumentException;
 

@@ -7,8 +7,7 @@
 
 namespace ZendTest\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Console\Service\ConsoleViewManagerFactory;
 use Zend\Mvc\Console\View\ViewManager;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
@@ -22,7 +21,8 @@ class ConsoleViewManagerFactoryTest extends TestCase
         $this->setConsoleEnvironment(false);
 
         $factory = new ConsoleViewManagerFactory();
-        $this->setExpectedException(ServiceNotCreatedException::class, 'requires a Console environment');
+        $this->expectException(ServiceNotCreatedException::class);
+        $this->expectExceptionMessage('requires a Console environment');
         $factory($this->createContainer(), 'ConsoleViewManager');
     }
 

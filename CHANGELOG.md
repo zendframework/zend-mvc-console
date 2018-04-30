@@ -2,29 +2,11 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 1.2.0 - TBD
+## 1.2.0 - 2018-04-30
 
 ### Added
 
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
-## 1.1.12 - TBD
-
-### Added
-
-- Nothing.
+- [#24](https://github.com/zendframework/zend-mvc-console/pull/24) adds support for PHP 7.1 and 7.2.
 
 ### Changed
 
@@ -36,7 +18,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#24](https://github.com/zendframework/zend-mvc-console/pull/24) removes support for HHVM.
 
 ### Fixed
 

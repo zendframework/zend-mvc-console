@@ -7,12 +7,12 @@
 
 namespace ZendTest\Mvc\Console\Controller;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Zend\Console\Request as ConsoleRequest;
-use Zend\Console\Response as ConsoleResponse;
 use Zend\Http\Request as HttpRequest;
 use Zend\Mvc\Console\Controller\Plugin\CreateConsoleNotFoundModel;
+use Zend\Mvc\Console\Exception\InvalidArgumentException;
 use Zend\Mvc\Console\View\ViewModel;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\Mvc\MvcEvent;
@@ -52,7 +52,7 @@ class ConsoleControllerTest extends TestCase
     {
         $request = new HttpRequest();
 
-        $this->setExpectedException('\Zend\Mvc\Console\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->controller->dispatch($request);
     }
 
@@ -65,7 +65,7 @@ class ConsoleControllerTest extends TestCase
 
     public function testGetInjectedConsole()
     {
-        $consoleAdapter = $this->getMock('\Zend\Console\Adapter\AdapterInterface');
+        $consoleAdapter = $this->createMock('\Zend\Console\Adapter\AdapterInterface');
 
         $controller = $this->controller->setConsole($consoleAdapter);
         $console = $this->controller->getConsole();

@@ -8,7 +8,7 @@
 namespace ZendTest\Mvc\Console\Router;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Console\Router\ConsoleRouterDelegatorFactory;
 use ZendTest\Mvc\Console\Service\FactoryEnvironmentTrait;
 
