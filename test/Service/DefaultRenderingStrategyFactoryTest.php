@@ -8,7 +8,7 @@
 namespace ZendTest\Mvc\Console\Service;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Console\Service\DefaultRenderingStrategyFactory;
 use Zend\Mvc\Console\View\DefaultRenderingStrategy;
 use Zend\Mvc\Console\View\Renderer;

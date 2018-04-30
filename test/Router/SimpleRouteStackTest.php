@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\Router;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Console\Router\Catchall;
 use Zend\Mvc\Console\Router\Simple;
 use Zend\Mvc\Console\Router\SimpleRouteStack;

@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\View;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use RuntimeException;
 use Zend\Console\Response;
@@ -164,7 +164,7 @@ class ExceptionStrategyTest extends TestCase
             $this->strategy->attach($events);
 
             $exception = new \Exception('some exception');
-            $event = new MvcEvent(MvcEvent::EVENT_DISPATCH_ERROR, null, ['exception'=>$exception]);
+            $event = new MvcEvent(MvcEvent::EVENT_DISPATCH_ERROR, null, ['exception' => $exception]);
             $event->setResult('something');
             $event->setError($error);
             $event->setParams(['exception' => $exception]);
@@ -235,7 +235,7 @@ class ExceptionStrategyTest extends TestCase
             $i++;
         } while ($i < count($messages));
 
-        $event = new MvcEvent(MvcEvent::EVENT_DISPATCH_ERROR, null, ['exception'=>$exception]);
+        $event = new MvcEvent(MvcEvent::EVENT_DISPATCH_ERROR, null, ['exception' => $exception]);
         $event->setError('user-defined-error');
 
         $events->triggerEvent($event); //$this->strategy->prepareExceptionViewModel($event);

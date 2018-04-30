@@ -7,11 +7,9 @@
 
 namespace Zend\Mvc\Console\View;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Filter\FilterChain;
-use Zend\Mvc\Console\View\Renderer;
 use Zend\View\Model\ModelInterface;
-use Zend\View\Resolver\ResolverInterface;
 
 class RendererTest extends TestCase
 {
