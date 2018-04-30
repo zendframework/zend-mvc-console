@@ -7,8 +7,7 @@
 
 namespace ZendTest\Mvc\Console;
 
-use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\EventManager\Test\EventListenerIntrospectionTrait;
 use Zend\Mvc\Console\ResponseSender\ConsoleResponseSender;
 use Zend\Mvc\Console\Service\ConsoleResponseSenderDelegatorFactory;
@@ -17,9 +16,6 @@ use Zend\Mvc\SendResponseListener;
 use Zend\Mvc\Service\SendResponseListenerFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\Factory\InvokableFactory;
-
-use ReflectionProperty;
 
 class ServiceManagerTest extends TestCase
 {

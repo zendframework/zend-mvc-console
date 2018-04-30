@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
+- [#24](https://github.com/zendframework/zend-mvc-console/pull/24) adds support for PHP 7.1 and 7.2.
+
+### Changed
+
 - Nothing.
 
 ### Deprecated
@@ -14,7 +18,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#24](https://github.com/zendframework/zend-mvc-console/pull/24) removes support for HHVM.
 
 ### Fixed
 

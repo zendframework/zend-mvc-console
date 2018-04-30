@@ -65,7 +65,7 @@ several types.
 
 `Zend\Mvc\Console\Router\Simple` is a factory for zend-console's
 `DefaultRouteMatcher`, and decorates it to work with the zend-mvc routing
-system. See the section on [the default route matcher](https://zendframework.github.io/zend-console/routes/#the-default-route-matcher)
+system. See the section on [the default route matcher](https://docs.zendframework.com/zend-console/routes/#the-default-route-matcher)
 for details on route strings and available configuration to provide.
 
 ### Catchall route

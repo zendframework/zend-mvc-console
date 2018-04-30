@@ -7,7 +7,7 @@
 
 namespace ZendTest\Mvc\Console\Controller\Plugin;
 
-use PHPUnit_framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Console\Controller\Plugin\CreateConsoleNotFoundModel;
 use Zend\Mvc\Console\View\ViewModel as ConsoleModel;
 

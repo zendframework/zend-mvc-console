@@ -7,9 +7,9 @@ Controllers can interact with and return output to console window.
 ## AbstractConsoleController
 
 zend-mvc-console provides a controller implementation for use with
-[zend-mvc](https://zendframework.github.io/zend-mvc/),
+[zend-mvc](https://docs.zendframework.com/zend-mvc/),
 `Zend\Mvc\Controller\AbstractConsoleController`. The implementation
-extends from the zend-mvc [AbstractActionController](https://zendframework.github.io/zend-mvc/controllers/#abstractactioncontroller),
+extends from the zend-mvc [AbstractActionController](https://docs.zendframework.com/zend-mvc/controllers/#abstractactioncontroller),
 and provides the following functionality:
 
 - The method `setConsole(Zend\Console\Adapter\AdapterInterface $console)` allows
@@ -127,13 +127,13 @@ class IndexController extends AbstractActionController
             case 'disabled':
                 $users = $this->users->fetchDisabledUsers();
                 break;
-            
+
             case 'deleted':
                 $users = $this->users->fetchDeletedUsers();
                 break;
-            
+
             case 'all':
-                
+
             default:
                 $users = $this->users->fetchAllUsers();
                 break;
@@ -285,7 +285,7 @@ class IndexController extends AbstractActionController
 ```
 
 > ### AbstractConsoleController
-> 
+>
 > The best way to ensure you always receive a console request instance is to extend
 > `Zend\Mvc\Controller\AbstractConsoleController`. This controller instance also
 > exposes a new method, `getConsole()`, providing you access to the console
@@ -295,7 +295,7 @@ class IndexController extends AbstractActionController
 ## Reading values from console parameters
 
 There are several types of parameters recognized by the Console component, all
-of which are described in the [console routing chapter](https://zendframework.github.io/zend-console/routes/).
+of which are described in the [console routing chapter](https://docs.zendframework.com/zend-console/routes/).
 Here, we'll focus on how to retrieve values from distinct parameters and flags.
 
 ### Positional parameters
@@ -372,10 +372,10 @@ public function showUsersAction()
     switch ($userTypeFilter) {
         case 'all':
             // all users
-            
+
         case 'deleted':
             // deleted users
-            
+
         case 'locked':
             // ...
             // ...

@@ -8,7 +8,7 @@
 namespace ZendTest\Mvc\Console\Service;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Zend\Console\Adapter\AdapterInterface;
 use Zend\Console\Charset\CharsetInterface;

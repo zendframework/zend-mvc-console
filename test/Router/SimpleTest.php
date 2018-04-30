@@ -8,7 +8,7 @@
 namespace ZendTest\Mvc\Console\Router;
 
 use ArrayObject;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Console\RouteMatcher\RouteMatcherInterface;
@@ -353,12 +353,12 @@ class SimpleTest extends TestCase
             'mandatory-literal-namedAlternative-match-1' => [
                 'foo ( bar | baz ):altGroup',
                 ['foo','bar'],
-                ['foo' => null, 'altGroup'=>'bar', 'bar' => true, 'baz' => false]
+                ['foo' => null, 'altGroup' => 'bar', 'bar' => true, 'baz' => false]
             ],
             'mandatory-literal-namedAlternative-match-2' => [
                 'foo ( bar |   baz   ):altGroup9',
                 ['foo','baz'],
-                ['foo' => null, 'altGroup9'=>'baz', 'bar' => false, 'baz' => true]
+                ['foo' => null, 'altGroup9' => 'baz', 'bar' => false, 'baz' => true]
             ],
             'mandatory-literal-namedAlternative-mismatch' => [
                 'foo ( bar |   baz   ):altGroup9',
@@ -410,7 +410,7 @@ class SimpleTest extends TestCase
             'optional-literal-namedAlternative-mismatch' => [
                 'foo [ bar | baz ]:altGroup9',
                 ['foo'],
-                ['foo' => null, 'altGroup9'=> null, 'bar' => false, 'baz' => false]
+                ['foo' => null, 'altGroup9' => null, 'bar' => false, 'baz' => false]
             ],
 
             // -- value params
@@ -918,7 +918,8 @@ class SimpleTest extends TestCase
      */
     public function __testParseExceptions($route, $exceptionName, $exceptionMessage)
     {
-        $this->setExpectedException($exceptionName, $exceptionMessage);
+        $this->expectException($exceptionName);
+        $this->expectExceptionMessage($exceptionMessage);
         new Simple($route);
     }
 
@@ -954,7 +955,9 @@ class SimpleTest extends TestCase
         array_unshift($arguments, 'scriptname.php');
         $request = new ConsoleRequest($arguments);
 
-        $routeMatcher = $this->getMock(RouteMatcherInterface::class, ['match']);
+        $routeMatcher = $this->getMockBuilder(RouteMatcherInterface::class)
+            ->setMethods(['match'])
+            ->getMock();
         $routeMatcher->expects($this->once())->method('match')
             ->with(['--foo=bar']);
 
@@ -964,7 +967,7 @@ class SimpleTest extends TestCase
 
     public function testConstructorThrowsExceptionWhenFirstArgumentIsNotStringNorRouteMatcherInterface()
     {
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new Simple(new \stdClass());
     }
 
@@ -988,7 +991,8 @@ class SimpleTest extends TestCase
      */
     public function testFactoryRaisesExceptionForNonTraversableNonArrayOptions($options)
     {
-        $this->setExpectedException(InvalidArgumentException::class, 'expects an array or Traversable');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('expects an array or Traversable');
         Simple::factory($options);
     }
 
@@ -1005,7 +1009,8 @@ class SimpleTest extends TestCase
      */
     public function testFactoryRaisesExceptionIfOptionsDoNotContainRoute($options)
     {
-        $this->setExpectedException(InvalidArgumentException::class, 'Missing "route"');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Missing "route"');
         Simple::factory($options);
     }
 

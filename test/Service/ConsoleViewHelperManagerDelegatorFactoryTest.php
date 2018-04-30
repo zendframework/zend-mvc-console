@@ -8,7 +8,7 @@
 namespace ZendTest\Mvc\Console\Service;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use ReflectionMethod;
 use Zend\Mvc\Application;
@@ -16,8 +16,8 @@ use Zend\Mvc\Console\Service\ConsoleViewHelperManagerDelegatorFactory;
 use Zend\Mvc\MvcEvent;
 use Zend\Router\RouteMatch;
 use Zend\Router\RouteStackInterface;
-use Zend\View\HelperPluginManager;
 use Zend\View\Helper;
+use Zend\View\HelperPluginManager;
 
 class ConsoleViewHelperManagerDelegatorFactoryTest extends TestCase
 {
