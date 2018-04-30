@@ -3,16 +3,16 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/intro/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/intro/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,32 +20,32 @@
     
         
     <url>
-     <loc>None/routing/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/routing/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/controllers/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/controllers/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/modules/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/modules/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/listeners/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/listeners/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/services/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/services/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -54,8 +54,8 @@
     
         
     <url>
-     <loc>None/migration/v2-to-v3/</loc>
-     <lastmod>2016-08-29</lastmod>
+     <loc>/migration/v2-to-v3/</loc>
+     <lastmod>2018-04-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
