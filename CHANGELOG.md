@@ -22,28 +22,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
-
-## 1.1.12 - TBD
-
-### Added
-
-- Nothing.
-
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
 - [#21](https://github.com/zendframework/zend-mvc-console/pull/21) adds a missing import statement for `Zend\Router\RouteMatch` to the
   `ConsoleViewHelperManagerDelegatorFactory` class.
 
