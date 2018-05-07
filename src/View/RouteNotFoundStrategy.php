@@ -319,7 +319,8 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
                  * array('--param', '--explanation')
                  */
                 if (is_array($b)) {
-                    if ((($count = count($b)) !== $tableCols || $tableType !== 2) && $table !== false) {
+                    $count = count($b);
+                    if (($count !== $tableCols || $tableType !== 2) && $table !== false) {
                         // render last table
                         $result .= $this->renderTable($table, $tableCols, $console->getWidth());
                         $table   = false;
