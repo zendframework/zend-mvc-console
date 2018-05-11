@@ -26,7 +26,7 @@ $ composer require zendframework/zend-mvc-console
 ```
 
 Assuming you are using the [component
-installer](https://docs.zendframework.com/zend-component-installer], doing so
+installer](https://docs.zendframework.com/zend-component-installer), doing so
 will enable the component in your application, allowing you to immediately start
 developing console applications via your MVC.
 
