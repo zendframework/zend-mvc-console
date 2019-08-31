@@ -200,7 +200,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
         /*
          * Handle an application with no defined banners
          */
-        if (! count($banners)) {
+        if (! $banners) {
             return "Zend Framework application\nUsage:\n";
         }
 
@@ -265,7 +265,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
         /*
          * Handle an application with no usage information
          */
-        if (! count($usageInfo)) {
+        if (! $usageInfo) {
             // TODO: implement fetching available console routes from router
             return '';
         }
@@ -319,7 +319,8 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
                  * array('--param', '--explanation')
                  */
                 if (is_array($b)) {
-                    if ((count($b) !== $tableCols || $tableType !== 2) && $table !== false) {
+                    $count = count($b);
+                    if (($count !== $tableCols || $tableType !== 2) && $table !== false) {
                         // render last table
                         $result .= $this->renderTable($table, $tableCols, $console->getWidth());
                         $table   = false;
@@ -328,7 +329,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
                         $result .= "\n";
                     }
 
-                    $tableCols = count($b);
+                    $tableCols = $count;
                     $tableType = 2;
                     $table[]   = $b;
                     continue;
