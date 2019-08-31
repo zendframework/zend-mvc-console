@@ -1,6 +1,6 @@
 # Introduction
 
-Zend Framework 2 introduce the ability to write console applications via its MVC
+Zend Framework 2 introduced the ability to write console applications via its MVC
 layer. This ability integrates a number of components, including:
 
 - zend-console
