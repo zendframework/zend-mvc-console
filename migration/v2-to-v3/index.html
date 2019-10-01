@@ -305,22 +305,22 @@
 releases to a single component. As such, a number of classes were renamed that
 may impact end-users.</p>
 <h2 id="zend-mvc-functionality">zend-mvc functionality</h2>
-<h3 id="abstractconsolecontroller">AbstractConsoleController</h3>
+<h3>AbstractConsoleController</h3>
 <p><code>Zend\Mvc\Controller\AbstractConsoleController</code> becomes
 <code>Zend\Mvc\Console\Controller\AbstractConsoleController</code>. Otherwise, all
 functionality remains the same.</p>
 <p>Update your code to import the <code>AbstractConsoleController</code> under its new
 namespace.</p>
-<h3 id="routing">Routing</h3>
+<h3>Routing</h3>
 <p>The namespace <code>Zend\Mvc\Router\Console</code> becomes <code>Zend\Mvc\Console\Router</code>. All
 classes retain existing functionality. If you were using default routes
 (<code>Simple</code>) or using the short names to refer to console routes, no changes will
 be necessary. Otherwise, update your code to refer to the new namespace.</p>
-<h3 id="responsesender">ResponseSender</h3>
+<h3>ResponseSender</h3>
 <p><code>Zend\Mvc\ResponseSender\ConsoleResponseSender</code> becomes
 <code>Zend\Mvc\Console\ResponseSender\ConsoleResponseSender</code>. As this is an
 implementation detail, it should have no impact on the end-user.</p>
-<h3 id="listeners">Listeners</h3>
+<h3>Listeners</h3>
 <p>The <code>Zend\Mvc\View\Console</code> namespace becomes <code>Zend\Mvc\Console\View</code>, but all
 existing listeners retain their names and functionality. As these were all
 managed by the console-specific <code>ViewManager</code>, this change should have no impact
@@ -333,11 +333,11 @@ on the end-user unless:</p>
 </ul>
 <p>In such cases, you will need to update your code to reference the new namespace.</p>
 <h2 id="zend-view-functionality">zend-view functionality</h2>
-<h3 id="viewmodel">ViewModel</h3>
+<h3>ViewModel</h3>
 <p>zend-view provided a <code>Zend\View\Model\ConsoleModel</code> class. This is now
 <code>Zend\Mvc\Console\View\ViewModel</code>. If you were returning <code>ConsoleModel</code>
 previously, update your code to return the new version.</p>
-<h3 id="renderer">Renderer</h3>
+<h3>Renderer</h3>
 <p>zend-view provided a <code>Zend\View\Renderer\ConsoleRenderer</code> class. This is now
 <code>Zend\Mvc\Console\View\Renderer</code>. Additionally, the console-specific
 <code>DefaultRenderingStrategy</code> now consumes the renderer (it did not in version 2).</p>
@@ -370,7 +370,7 @@ previously, update your code to return the new version.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-mvc-console/edit/master/docs/migration/v2-to-v3.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-mvc-console/edit/master/docs/book/migration/v2-to-v3.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

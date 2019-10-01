@@ -435,16 +435,16 @@ description of what they do.</p>
 <h2 id="application-configuration-options">Application Configuration Options</h2>
 <p>Console tooling provides several locations for configuration, primarily at the
 service, routing, and view levels.</p>
-<h3 id="services">Services</h3>
+<h3>Services</h3>
 <p>All services registered can be configured to use different factories; see the
 above tables for details on what service names to override.</p>
-<h3 id="routing">Routing</h3>
+<h3>Routing</h3>
 <p>Routing configuration is detailed in the <a href="../routing/">routing chapter</a>.</p>
-<h3 id="viewmanager">ViewManager</h3>
+<h3>ViewManager</h3>
 <p><code>Zend\Mvc\Console\View\ViewManager</code> acts similarly to its <a href="http://docs.zendframework.com/zend-mvc/services/#viewmanager">zend-mvc
 equivalent</a>, and
 will look for one or the other of the following configuration structures:</p>
-<pre class="codehilite"><code class="language-php">return [
+<p> <pre class=codehilite><code class=language-php>return [
     'view_manager' =&gt; [
         'mvc_strategies' =&gt; $stringOrArrayOfMvcListenerServiceNames,
         'strategies'     =&gt; $stringOrArrayOfViewListenerServiceNames,
@@ -455,8 +455,7 @@ will look for one or the other of the following configuration structures:</p>
             'strategies'     =&gt; $stringOrArrayOfViewListenerServiceNames,
         ],
     ],
-];</code></pre>
-
+];</code></pre></p>
 <p>Preference is given to those under the <code>console</code> top-level key (those under
 <code>view_manager</code> are ignored if the <code>console.view_manager</code> structure exists).</p>
 <p><code>mvc_strategies</code> refers to view-related listeners that need to operate on the
@@ -495,7 +494,7 @@ on the <code>Zend\View\ViewEvent</code> context.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-mvc-console/edit/master/docs/services.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-mvc-console/edit/master/docs/book/services.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

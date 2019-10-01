@@ -309,12 +309,10 @@ layer. This ability integrates a number of components, including:</p>
 </ul>
 <p>When correctly configured, the functionality allows you to execute console
 applications via the same <code>public/index.php</code> script as used for HTTP requests:</p>
-<pre class="codehilite"><code class="language-bash">$ php public/index.php &lt;arguments...&gt;</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ php public/index.php &lt;arguments...&gt;</code></pre></p>
 <p>For version 3 we have separated the functionality into a separate integration
 component, zend-mvc-console. You can install and activate it via composer:</p>
-<pre class="codehilite"><code class="language-bash">$ composer require zendframework/zend-mvc-console</code></pre>
-
+<p> <pre class=codehilite><code class=language-bash>$ composer require zendframework/zend-mvc-console</code></pre></p>
 <p>Assuming you are using the <a href="https://docs.zendframework.com/zend-component-installer">component
 installer</a>, doing so
 will enable the component in your application, allowing you to immediately start
@@ -325,17 +323,17 @@ developing console applications via your MVC.</p>
 component as a module at the start of your module list in your Zend Framework
 application.</p>
 <p>If using a vanilla skeleton application, update <code>config/application.config.php</code>:</p>
-<pre class="codehilite"><code class="language-php">'modules' =&gt; [
+<p><code>php
+'modules' =&gt; [
     'Zend\Mvc\Console', // add it to the top of your module list
     /* ... */
-]</code></pre>
-
+]</code></p>
 <p>If using Apigility, update your <code>config/modules.config.php</code>:</p>
-<pre class="codehilite"><code class="language-php">return [
+<p><code>php
+return [
     'Zend\Mvc\Console', // add it to the top of your module list
     /* ... */
-];</code></pre>
-
+];</code></p>
 </blockquote>
 <h2 id="deprecated">Deprecated</h2>
 <p>Due to the amount of integration required to support console tooling via the
@@ -381,7 +379,7 @@ standalone package, we needed to make a few changes. See the
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-mvc-console/edit/master/docs/intro.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-mvc-console/edit/master/docs/book/intro.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>
