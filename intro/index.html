@@ -323,17 +323,19 @@ developing console applications via your MVC.</p>
 component as a module at the start of your module list in your Zend Framework
 application.</p>
 <p>If using a vanilla skeleton application, update <code>config/application.config.php</code>:</p>
-<p><code>php
+<p><pre class=codehilite><code class=language-php>
 'modules' =&gt; [
     'Zend\Mvc\Console', // add it to the top of your module list
     /* ... */
-]</code></p>
+]
+</code></pre></p>
 <p>If using Apigility, update your <code>config/modules.config.php</code>:</p>
-<p><code>php
+<p><pre class=codehilite><code class=language-php>
 return [
     'Zend\Mvc\Console', // add it to the top of your module list
     /* ... */
-];</code></p>
+];
+</code></pre></p>
 </blockquote>
 <h2 id="deprecated">Deprecated</h2>
 <p>Due to the amount of integration required to support console tooling via the
