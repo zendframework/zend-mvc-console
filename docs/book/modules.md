@@ -195,7 +195,7 @@ public function getConsoleUsage(Console $console)
 
 ![Free-form usage text](images/zend.console.usage2.png)
 
-> #### Usage text is provided as-is
+> ### Usage text is provided as-is
 >
 > The text provided is displayed as-is; no trimming or other adjustments will
 > be performed. If you'd like to fit your usage information inside the console
@@ -222,7 +222,7 @@ public function getConsoleUsage(Console $console)
 
 ![Listing multiple commands](images/zend.console.usage3.png)
 
-> #### Command list alignment
+> ### Command list alignment
 >
 > Commands and their descriptions will be aligned in two columns that fit
 > inside the terminal window. If the window is resized, text may wrap, but all
@@ -271,7 +271,7 @@ public function getConsoleUsage(Console $console)
 
 ![Multiple columns](images/zend.console.usage5.png)
 
-> #### Alignment
+> ### Alignment
 >
 > All information will be aligned in one or more columns that fit inside the
 > terminal window. If the window is resized, some text may wrap, but all
