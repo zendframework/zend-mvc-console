@@ -1,4 +1,4 @@
-# Migration: zend-mvc and zend-view v2 to zend-mvc-console
+# Version 2 to Version 3
 
 zend-mvc-console ports all console functionality from zend-mvc and zend-view v2
 releases to a single component. As such, a number of classes were renamed that
