@@ -1,4 +1,4 @@
-# MVC Listeners
+# Listeners
 
 zend-mvc-console registers a number of listeners with zend-mvc applications.
 Below is a list of events, and the listeners zend-mvc-console registers.
@@ -94,7 +94,7 @@ Class                  | In Method         | Description
 The following classes listen to this event (sorted from higher priority to lower
 priority):
 
-#### Console context only
+#### Console Context only
 
 The following listeners are only attached in a console context:
 
