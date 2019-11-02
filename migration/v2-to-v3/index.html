@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Mvc\Console">  
+    <meta name="description" content="Integration between zend-mvc and zend-console.">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-mvc-console/migration/v2-to-v3/">
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
@@ -82,21 +82,7 @@
                     
                         
                             <li class="subnavigation__list-item ">
-                                <a href="../.." class="subnavigation__link">zend-mvc-console</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
-                            <li class="subnavigation__list-item ">
-                                <a href="../../intro/" class="subnavigation__link">Intro</a>
+                                <a href="../../intro/" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     
@@ -287,11 +273,11 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#zend-mvc-functionality" class="toc__link">zend-mvc functionality</a>
+                        <a href="#zend-mvc-functionality" class="toc__link">zend-mvc Functionality</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#zend-view-functionality" class="toc__link">zend-view functionality</a>
+                        <a href="#zend-view-functionality" class="toc__link">zend-view Functionality</a>
                     </li>
                 
             </ul>
@@ -300,11 +286,11 @@
 
     </div>
 
-    <h1 id="migration-zend-mvc-and-zend-view-v2-to-zend-mvc-console">Migration: zend-mvc and zend-view v2 to zend-mvc-console</h1>
+    <h1 id="version-2-to-version-3">Version 2 to Version 3</h1>
 <p>zend-mvc-console ports all console functionality from zend-mvc and zend-view v2
 releases to a single component. As such, a number of classes were renamed that
 may impact end-users.</p>
-<h2 id="zend-mvc-functionality">zend-mvc functionality</h2>
+<h2 id="zend-mvc-functionality">zend-mvc Functionality</h2>
 <h3>AbstractConsoleController</h3>
 <p><code>Zend\Mvc\Controller\AbstractConsoleController</code> becomes
 <code>Zend\Mvc\Console\Controller\AbstractConsoleController</code>. Otherwise, all
@@ -332,7 +318,7 @@ on the end-user unless:</p>
   <code>ConsoleDefaultRenderingStrategy</code>).</li>
 </ul>
 <p>In such cases, you will need to update your code to reference the new namespace.</p>
-<h2 id="zend-view-functionality">zend-view functionality</h2>
+<h2 id="zend-view-functionality">zend-view Functionality</h2>
 <h3>ViewModel</h3>
 <p>zend-view provided a <code>Zend\View\Model\ConsoleModel</code> class. This is now
 <code>Zend\Mvc\Console\View\ViewModel</code>. If you were returning <code>ConsoleModel</code>
@@ -407,21 +393,7 @@ previously, update your code to return the new version.</p>
                     
                         
                             <li class="subnavigation__list-item ">
-                                <a href="../.." class="subnavigation__link">zend-mvc-console</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
-                            <li class="subnavigation__list-item ">
-                                <a href="../../intro/" class="subnavigation__link">Intro</a>
+                                <a href="../../intro/" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     

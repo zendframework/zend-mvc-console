@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Mvc\Console">  
+    <meta name="description" content="Integration between zend-mvc and zend-console.">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-mvc-console/modules/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
@@ -82,21 +82,7 @@
                     
                         
                             <li class="subnavigation__list-item ">
-                                <a href=".." class="subnavigation__link">zend-mvc-console</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
-                            <li class="subnavigation__list-item ">
-                                <a href="../intro/" class="subnavigation__link">Intro</a>
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     
@@ -287,15 +273,15 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#application-banner" class="toc__link">Application banner</a>
+                        <a href="#application-banner" class="toc__link">Application Banner</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#usage-information" class="toc__link">Usage information</a>
+                        <a href="#usage-information" class="toc__link">Usage Information</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#best-practices" class="toc__link">Best practices</a>
+                        <a href="#best-practices" class="toc__link">Best Practices</a>
                     </li>
                 
             </ul>
@@ -304,7 +290,7 @@
 
     </div>
 
-    <h1 id="console-aware-modules">Console-aware modules</h1>
+    <h1 id="modules">Modules</h1>
 <p>zend-mvc-console integrates zend-mvc with zend-console; the integration also works with modules
 loaded with the
 <a href="http://framework.zend.com/manual/current/en/modules/zend.module-manager.intro.html">Module Manager</a>.</p>
@@ -316,7 +302,7 @@ responsible for displaying console usage information when:</p>
 </ul>
 <p>The strategy currently supports two types of information:
 <a href="#application-banner">application banners</a> and <a href="#usage-information">usage information</a>.</p>
-<h2 id="application-banner">Application banner</h2>
+<h2 id="application-banner">Application Banner</h2>
 <p>When using the console within a zend-mvc-console-enabled application, you can
 invoke it via the application bootstrap:</p>
 <p> <pre class=codehilite><code class=language-bash>$ php public/index.php</code></pre></p>
@@ -387,12 +373,12 @@ class Module implements ConsoleBannerProviderInterface
 will look like this:</p>
 <p><img alt="Two modules" src="../images/zend.console.banner2.png" class="img-responsive"/></p>
 <blockquote>
-<h3>Application banner display</h3>
+<h3>Application Banner Display</h3>
 <p>Application banners provided by modules are displayed as-is &mdash; no
 trimming or other adjustments will be performed on the text. As you can see,
 banners are also automatically colorized as blue.</p>
 </blockquote>
-<h2 id="usage-information">Usage information</h2>
+<h2 id="usage-information">Usage Information</h2>
 <p>In order to display usage information, our Module class must implement
 <code>Zend\ModuleManager\Feature\ConsoleUsageProviderInterface</code>. Let's modify our
 example and add the new method defined in that interface:</p>
@@ -442,13 +428,13 @@ usage with the module's name. This helps to visually separate commands by module
 &mdash; which is particularly useful when you have multiple modules providing
 commands.  By default, the component colorizes the module names in red.</p>
 <blockquote>
-<h3>Usage information is arbitrary</h3>
+<h3>Usage Information is arbitrary</h3>
 <p>Usage info provided in modules is not connected with <a href="../routing/">console
 routing</a>. You can describe console usage in any form you prefer,
 and it does not affect how MVC handles console commands. In order to handle
 real console requests, you still need to define console routes.</p>
 </blockquote>
-<h3>Free-form text</h3>
+<h3>Free-form Text</h3>
 <p>In order to output free-form text as usage information, <code>getConsoleUsage()</code> can
 return a string or an array of strings. As an example, the following is a
 single, free-form usage text:</p>
@@ -459,12 +445,12 @@ single, free-form usage text:</p>
 }</code></pre></p>
 <p><img alt="Free-form usage text" src="../images/zend.console.usage2.png" class="img-responsive"/></p>
 <blockquote>
-<h4>Usage text is provided as-is</h4>
+<h3>Usage Text is provided as-is</h3>
 <p>The text provided is displayed as-is; no trimming or other adjustments will
 be performed. If you'd like to fit your usage information inside the console
 window, you could check its width with <code>$console-getWidth()</code>.</p>
 </blockquote>
-<h3>List of commands</h3>
+<h3>List of Commands</h3>
 <p>If <code>getConsoleUsage()</code> returns an associative array, it will be automatically
 aligned in 2 columns.  The first column will be prepended with script name (the
 entry point for the application). This is useful to display the various
@@ -480,14 +466,14 @@ commands exposed.</p>
 }</code></pre></p>
 <p><img alt="Listing multiple commands" src="../images/zend.console.usage3.png" class="img-responsive"/></p>
 <blockquote>
-<h4>Command list alignment</h4>
+<h3>Command list Alignment</h3>
 <p>Commands and their descriptions will be aligned in two columns that fit
 inside the terminal window. If the window is resized, text may wrap, but all
 content will be aligned. If you don't like the behavior, you can always
 return <a href="#free-form-text">free-form text</a> instead, as free-form text is never
 transformed or aligned.</p>
 </blockquote>
-<h3>List of params and flags</h3>
+<h3>List of Parameters and Flags</h3>
 <p>Returning an array of arrays from <code>getConsoleUsage()</code> will produce a listing of
 parameters. This is useful for explaining flags, switches, possible values and
 other information. The output will be aligned in multiple columns for
@@ -517,7 +503,7 @@ readability.</p>
 }</code></pre></p>
 <p><img alt="Multiple columns" src="../images/zend.console.usage5.png" class="img-responsive"/></p>
 <blockquote>
-<h4>Alignment</h4>
+<h3>Alignment</h3>
 <p>All information will be aligned in one or more columns that fit inside the
 terminal window. If the window is resized, some text may wrap, but all
 content will remain aligned. In case the number of columns changes (e.g. the
@@ -525,7 +511,7 @@ array contains different number of elements), a new table will be created,
 with its own alignment and column widths.</p>
 <p>If you don't like this behavior, you can always return <a href="#free-form-text">free-form text</a>.</p>
 </blockquote>
-<h3>Mixing styles</h3>
+<h3>Mixing Styles</h3>
 <p>You can use mix together all of the above styles to provide comprehensive usage information.</p>
 <p> <pre class=codehilite><code class=language-php>public function getConsoleUsage(Console $console)
 {
@@ -551,7 +537,7 @@ with its own alignment and column widths.</p>
     ];
 }</code></pre></p>
 <p><img alt="Mixed styles" src="../images/zend.console.usage6.png" class="img-responsive"/></p>
-<h2 id="best-practices">Best practices</h2>
+<h2 id="best-practices">Best Practices</h2>
 <p>Here are the best practices when providing usage for your commands:</p>
 <ol>
 <li>Your module's <code>getConsoleBanner()</code> method should return a one-line string
@@ -630,21 +616,7 @@ with its own alignment and column widths.</p>
                     
                         
                             <li class="subnavigation__list-item ">
-                                <a href=".." class="subnavigation__link">zend-mvc-console</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
-                            <li class="subnavigation__list-item ">
-                                <a href="../intro/" class="subnavigation__link">Intro</a>
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     

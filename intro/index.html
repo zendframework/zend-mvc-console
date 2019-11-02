@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zend\Mvc\Console">  
+    <meta name="description" content="Integration between zend-mvc and zend-console.">  
     <link rel="canonical" href="https://docs.zendframework.com/zend-mvc-console/intro/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
-    <title>Intro - zend-mvc-console - Zend Framework Docs</title>
+    <title>Introduction - zend-mvc-console - Zend Framework Docs</title>
 
     <link rel="stylesheet" href="../css/styles-5cfabd53ee.css">
 </head>
@@ -81,22 +81,8 @@
                     
                     
                         
-                            <li class="subnavigation__list-item ">
-                                <a href=".." class="subnavigation__link">zend-mvc-console</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
                             <li class="subnavigation__list-item subnavigation__list-item--active">
-                                <a href="./" class="subnavigation__link">Intro</a>
+                                <a href="./" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     
@@ -254,7 +240,7 @@
 
             
 
-            <li class="active">Intro</li>
+            <li class="active">Introduction</li>
         
     
 </ol>
@@ -272,25 +258,6 @@
     
 
     
-    
-        <div class="toc">
-            <h6 class="toc__headline">In This Article</h6>
-            <ul class="toc__list">
-                
-                    <li class="toc__entry">
-                        <a href="#manual-installation" class="toc__link">Manual installation</a>
-                    </li>
-                
-                    <li class="toc__entry">
-                        <a href="#deprecated" class="toc__link">Deprecated</a>
-                    </li>
-                
-                    <li class="toc__entry">
-                        <a href="#migration" class="toc__link">Migration</a>
-                    </li>
-                
-            </ul>
-        </div>
     
 
     </div>
@@ -310,44 +277,6 @@ layer. This ability integrates a number of components, including:</p>
 <p>When correctly configured, the functionality allows you to execute console
 applications via the same <code>public/index.php</code> script as used for HTTP requests:</p>
 <p> <pre class=codehilite><code class=language-bash>$ php public/index.php &lt;arguments...&gt;</code></pre></p>
-<p>For version 3 we have separated the functionality into a separate integration
-component, zend-mvc-console. You can install and activate it via composer:</p>
-<p> <pre class=codehilite><code class=language-bash>$ composer require zendframework/zend-mvc-console</code></pre></p>
-<p>Assuming you are using the <a href="https://docs.zendframework.com/zend-component-installer">component
-installer</a>, doing so
-will enable the component in your application, allowing you to immediately start
-developing console applications via your MVC.</p>
-<blockquote>
-<h2 id="manual-installation">Manual installation</h2>
-<p>If you are not using the component installer, you will need to add this
-component as a module at the start of your module list in your Zend Framework
-application.</p>
-<p>If using a vanilla skeleton application, update <code>config/application.config.php</code>:</p>
-<p><pre class=codehilite><code class=language-php>
-'modules' =&gt; [
-    'Zend\Mvc\Console', // add it to the top of your module list
-    /* ... */
-]
-</code></pre></p>
-<p>If using Apigility, update your <code>config/modules.config.php</code>:</p>
-<p><pre class=codehilite><code class=language-php>
-return [
-    'Zend\Mvc\Console', // add it to the top of your module list
-    /* ... */
-];
-</code></pre></p>
-</blockquote>
-<h2 id="deprecated">Deprecated</h2>
-<p>Due to the amount of integration required to support console tooling via the
-MVC, and because <a href="https://github.com/zfcampus/zf-console">better, more standalone solutions
-exist</a>, we will not be maintaining
-zend-mvc-console long term. We strongly urge developers to start migrating their
-MVC-based console tooling to use other libraries, such as
-<a href="https://github.com/zfcampus/zf-console">zf-console</a>.</p>
-<h2 id="migration">Migration</h2>
-<p>In order to separate the console tooling from zend-mvc and provide it as a
-standalone package, we needed to make a few changes. See the
-<a href="../migration/v2-to-v3/">migration guide</a> for details.</p>
 
 
 
@@ -417,22 +346,8 @@ standalone package, we needed to make a few changes. See the
                     
                     
                         
-                            <li class="subnavigation__list-item ">
-                                <a href=".." class="subnavigation__link">zend-mvc-console</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
                             <li class="subnavigation__list-item subnavigation__list-item--active">
-                                <a href="./" class="subnavigation__link">Intro</a>
+                                <a href="./" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     
