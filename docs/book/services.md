@@ -7,7 +7,7 @@ MVC layer.
 This chapter details the various services registered by zend-mvc-console by
 default, the classes they represent, and any configuration options available.
 
-## Services Provided
+## Services provided
 
 The following is a list of service names and what the service returns.
 
@@ -30,7 +30,7 @@ Alias                           | Aliased to
 ConsoleDefaultRenderingStrategy | `Zend\Mvc\Console\View\DefaultRenderingStrategy`
 ConsoleRenderer                 | `Zend\Mvc\Console\View\Renderer`
 
-## Delegator factories
+## Delegator Factories
 
 When operating in a console environment, several typical zend-mvc services need
 to operate differently, or require alternate services. To enable that,
