@@ -94,7 +94,7 @@ Class                  | In Method         | Description
 The following classes listen to this event (sorted from higher priority to lower
 priority):
 
-#### Console context only
+#### Console Context only
 
 The following listeners are only attached in a console context:
 

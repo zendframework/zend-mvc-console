@@ -4,7 +4,7 @@ zend-mvc-console ports all console functionality from zend-mvc and zend-view v2
 releases to a single component. As such, a number of classes were renamed that
 may impact end-users.
 
-## zend-mvc functionality
+## zend-mvc Functionality
 
 ### AbstractConsoleController
 
@@ -42,7 +42,7 @@ on the end-user unless:
 
 In such cases, you will need to update your code to reference the new namespace.
 
-## zend-view functionality
+## zend-view Functionality
 
 ### ViewModel
 

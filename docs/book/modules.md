@@ -13,7 +13,7 @@ responsible for displaying console usage information when:
 The strategy currently supports two types of information:
 [application banners](#application-banner) and [usage information](#usage-information).
 
-## Application banner
+## Application Banner
 
 When using the console within a zend-mvc-console-enabled application, you can
 invoke it via the application bootstrap:
@@ -108,13 +108,13 @@ will look like this:
 
 ![Two modules](images/zend.console.banner2.png)
 
-> ### Application banner display
+> ### Application Banner Display
 >
 > Application banners provided by modules are displayed as-is &mdash; no
 > trimming or other adjustments will be performed on the text. As you can see,
 > banners are also automatically colorized as blue.
 
-## Usage information
+## Usage Information
 
 In order to display usage information, our Module class must implement
 `Zend\ModuleManager\Feature\ConsoleUsageProviderInterface`. Let's modify our
@@ -172,14 +172,14 @@ usage with the module's name. This helps to visually separate commands by module
 &mdash; which is particularly useful when you have multiple modules providing
 commands.  By default, the component colorizes the module names in red.
 
-> ### Usage information is arbitrary
+> ### Usage Information is arbitrary
 >
 > Usage info provided in modules is not connected with [console
 > routing](routing.md). You can describe console usage in any form you prefer,
 > and it does not affect how MVC handles console commands. In order to handle
 > real console requests, you still need to define console routes.
 
-### Free-form text
+### Free-form Text
 
 In order to output free-form text as usage information, `getConsoleUsage()` can
 return a string or an array of strings. As an example, the following is a
@@ -195,13 +195,13 @@ public function getConsoleUsage(Console $console)
 
 ![Free-form usage text](images/zend.console.usage2.png)
 
-> ### Usage text is provided as-is
+> ### Usage Text is provided as-is
 >
 > The text provided is displayed as-is; no trimming or other adjustments will
 > be performed. If you'd like to fit your usage information inside the console
 > window, you could check its width with `$console-getWidth()`.
 
-### List of commands
+### List of Commands
 
 If `getConsoleUsage()` returns an associative array, it will be automatically
 aligned in 2 columns.  The first column will be prepended with script name (the
@@ -222,7 +222,7 @@ public function getConsoleUsage(Console $console)
 
 ![Listing multiple commands](images/zend.console.usage3.png)
 
-> ### Command list alignment
+> ### Command list Alignment
 >
 > Commands and their descriptions will be aligned in two columns that fit
 > inside the terminal window. If the window is resized, text may wrap, but all
@@ -230,7 +230,7 @@ public function getConsoleUsage(Console $console)
 > return [free-form text](#free-form-text) instead, as free-form text is never
 > transformed or aligned.
 
-### List of params and flags
+### List of Parameters and Flags
 
 Returning an array of arrays from `getConsoleUsage()` will produce a listing of
 parameters. This is useful for explaining flags, switches, possible values and
@@ -281,7 +281,7 @@ public function getConsoleUsage(Console $console)
 >
 > If you don't like this behavior, you can always return [free-form text](#free-form-text).
 
-### Mixing styles
+### Mixing Styles
 
 You can use mix together all of the above styles to provide comprehensive usage information.
 
@@ -313,7 +313,7 @@ public function getConsoleUsage(Console $console)
 
 ![Mixed styles](images/zend.console.usage6.png)
 
-## Best practices
+## Best Practices
 
 Here are the best practices when providing usage for your commands:
 

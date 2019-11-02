@@ -41,7 +41,7 @@ The composed `EventManager` will be configured to listen on the following contex
 Additionally, if you extend the class, it will listen on the name of the
 extending class.
 
-## Handling console requests
+## Handling Console Requests
 
 Console requests are very similar to HTTP requests. In fact, they implement a
 common interface and are created at the same time in the MVC workflow. [Console routes](routing.md)
@@ -146,7 +146,7 @@ We fetch the console request, read parameters, and load users from our
 (theoretical) users service.  In order to make this method functional, we'll
 have to display the result in the console window.
 
-## Sending output to the console
+## Sending Output to the Console
 
 The simplest way for our controller to display data in the console window is to
 return a string. Let's modify our example to output a list of users:
@@ -200,7 +200,7 @@ application.
 If any users are found, we loop through each to prepare a listing, which we then
 return from the action for display in the console.
 
-## Are we in a console?
+## Are we in a Console?
 
 Sometimes we might need to check if our method is being called from a console or
 from a web request. This is useful to block certain methods from running in the
@@ -235,7 +235,7 @@ class IndexController extends AbstractActionController
 }
 ```
 
-> ### Use routing to protect methods
+> ### Use Routing to protect Methods
 >
 > You do not need to secure all your controllers and methods from console
 > requests. Controller actions will **only be invoked** when at least one
@@ -292,13 +292,13 @@ class IndexController extends AbstractActionController
 > adapter, allowing you to use prompts, send output (including colorized output),
 > and more.
 
-## Reading values from console parameters
+## Reading Values from Console Parameters
 
 There are several types of parameters recognized by the Console component, all
 of which are described in the [console routing chapter](https://docs.zendframework.com/zend-console/routes/).
 Here, we'll focus on how to retrieve values from distinct parameters and flags.
 
-### Positional parameters
+### Positional Parameters
 
 After a route matches, we can access both **literal parameters** and **value
 parameters** via the `$request` instance, using the `getParam()` method.
