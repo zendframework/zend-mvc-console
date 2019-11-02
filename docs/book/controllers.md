@@ -1,4 +1,4 @@
-# Console Controllers
+# Controllers
 
 When using the zend-mvc integration with zend-console, a matched route results
 in dispatch of an action controller. In this chapter we will learn how ZF2
