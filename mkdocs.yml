@@ -14,3 +14,5 @@ pages:
 site_name: zend-mvc-console
 site_description: 'Integration between zend-mvc and zend-console.'
 repo_url: 'https://github.com/zendframework/zend-mvc-console'
+extra:
+    show_special_homepage: True
