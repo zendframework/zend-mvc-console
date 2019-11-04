@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/intro/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/routing/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/controllers/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/modules/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/listeners/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/services/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://docs.zendframework.com/zend-mvc-console/migration/v2-to-v3/</loc>
-     <lastmod>2019-11-02</lastmod>
+     <lastmod>2019-11-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
