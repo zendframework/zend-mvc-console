@@ -1,9 +1,5 @@
 # zend-mvc-console
 
-> ## Repository abandoned 2019-12-05
->
-> This package is no longer maintained. We recommend extracting your console functionality from your MVC actions and using a dedicated console runner such as symfony/console.
-
 [![Build Status](https://secure.travis-ci.org/zendframework/zend-mvc-console.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-mvc-console)
 [![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-mvc-console/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-mvc-console?branch=master)
 
