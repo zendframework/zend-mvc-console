@@ -265,7 +265,7 @@ MVC-based console tooling to use other libraries, such as
 zend-mvc releases prior to v3, as it is not compatible.</p>
 </blockquote>
 <h2 id="installation">Installation</h2>
-<p> <pre class=codehilite><code class=language-console>$ composer require zendframework/zend-mvc-console</code></pre></p>
+<pre class=codehilite><code class=language-console>$ composer require zendframework/zend-mvc-console</code></pre>
 <p>Assuming you are using the <a href="https://docs.zendframework.com/zend-component-installer">component
 installer</a>, doing so
 will enable the component in your application, allowing you to immediately start
@@ -276,19 +276,19 @@ developing console applications via your MVC.</p>
 component as a module at the start of your module list in your Zend Framework
 application.</p>
 <p>If using a vanilla skeleton application, update <code>config/application.config.php</code>:</p>
-<p><pre class=codehilite><code class=language-php>
+<pre class=codehilite><code class=language-php>
 'modules' =&gt; [
     'Zend\Mvc\Console', // add it to the top of your module list
     /* ... */
 ]
-</code></pre></p>
+</code></pre>
 <p>If using Apigility, update your <code>config/modules.config.php</code>:</p>
-<p><pre class=codehilite><code class=language-php>
+<pre class=codehilite><code class=language-php>
 return [
     'Zend\Mvc\Console', // add it to the top of your module list
     /* ... */
 ];
-</code></pre></p>
+</code></pre>
 </blockquote>
 <h2 id="migration">Migration</h2>
 <p>In order to separate the console tooling from zend-mvc and provide it as a
@@ -561,5 +561,5 @@ standalone package, we needed to make a few changes. See the
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-11-04 09:40:41
+Build Date UTC : 2019-12-09 20:49:48
 -->
