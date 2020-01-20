@@ -2,7 +2,7 @@
 
 > ## Repository abandoned 2019-12-31
 >
-> This repository has moved to laminas/laminas-mvc-console.
+> This repository has moved to [laminas/laminas-mvc-console](https://github.com/laminas/laminas-mvc-console).
 
 [![Build Status](https://secure.travis-ci.org/zendframework/zend-mvc-console.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-mvc-console)
 [![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-mvc-console/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-mvc-console?branch=master)
