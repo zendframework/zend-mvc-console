@@ -90,7 +90,6 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
         }
 
         $response = $e->getResponse();
-        $request  = $e->getRequest();
 
         switch ($error) {
             case Application::ERROR_CONTROLLER_NOT_FOUND:
@@ -139,6 +138,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
             throw new RuntimeException('Cannot access Console adapter - is it defined in ServiceManager?');
         }
 
+        $request = $e->getRequest();
         // Retrieve the script's name (entry point)
         $scriptName = '';
         if ($request instanceof ConsoleRequest) {
